@@ -21,7 +21,7 @@ const fs = require("fs"),
     } else {
       res.status(500).json({
         transaccion: false,
-        data: null,
+        data: 'null  :*',
         msg: err
     })
     }

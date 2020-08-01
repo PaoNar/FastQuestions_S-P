@@ -69,35 +69,37 @@ export class CrudService {
   //   return returnData;
   // }
 
-  patchData(dataSend: object, endPoint: string, id: string): Array<any> {
+  putData(dataSend: object, endPoint: string, _id: string): Array<any> {
     let returnData: Array<any> = [];
 
     this.http
-      .patch<DataRx>(
-        `${this.url}${endPoint}/${id}`,
+      .put<DataRx>(
+        `${this.url}${endPoint}?id=${_id}`,
         dataSend,
-        this.server.obtenerHeaders()
+       // this.server.obtenerHeaders()
       )
       .subscribe((data) => {
+        console.log(data)
         if (data.transaccion) {
           returnData = data.data;
-          this.permissions.decodeToken(data.token);
+         // this.permissions.decodeToken(data.token);
         } else {
           alert(data.msg);
         }
       });
     return returnData;
   }
+ 
 
-  deleteData(endPoint: string, id: string): Array<any> {
+  deleteData(endPoint: string, _id: string): Array<any> {
     let returnData: Array<any> = [];
     
     this.http
-      .delete<DataRx>(`${this.url}${endPoint}/${id}`, this.server.obtenerHeaders())
+      .delete<DataRx>(`${this.url}${endPoint}?id=${_id}`, this.server.obtenerHeaders())
       .subscribe((data) => {
         if (data.transaccion) {
           returnData = data.data;
-          this.permissions.decodeToken(data.token);
+         // this.permissions.decodeToken(data.token);
         } else {
           alert(data.msg);
         }

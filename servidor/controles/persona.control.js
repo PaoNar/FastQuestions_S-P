@@ -152,7 +152,7 @@ let borrarAllUsuario = (req, res) =>{
 
 
 let nuevoUsuario = async(req, res) =>{
-  let usuario = req.body.usuario
+  let usuario = req.body.data
   usuarios.create(usuario)
     .then((data) =>{
         res.status(200).json({

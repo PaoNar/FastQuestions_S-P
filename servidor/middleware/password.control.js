@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken'),
 
 
 let codificarPassword = (req, res, next) =>{
-    let usuario = req.body.usuario || null 
+    let usuario = req.body.data || null 
     if(!usuario || usuario.passw == '' || !usuario.passw ){
         console.log('usuario no valido')
         return res.status(200).send('usuario o contraseña invalidos')

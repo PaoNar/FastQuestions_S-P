@@ -15,7 +15,7 @@ api.get("/", (req, res) => {
   res.send("Hola API");
 });
 
-api.get('/get_persona', autenticaControl.autentica, usuarioControl.getUsuarios);
+api.get('/get_persona', usuarioControl.getUsuarios);
 api.get('/get_idpersona', usuarioControl.getIdUsuario);
 
 api.post("/insertar_persona", usuarioControl.allUsuarios);
