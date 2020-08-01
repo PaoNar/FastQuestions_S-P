@@ -1,0 +1,47 @@
+<div class="md:px-32 py-8 w-full">
+    <div class="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="w-2 bg-gray-800"></div>
+        <div class="flex items-center px-2 py-3">
+            <div class="mx-3">
+                <h2 class="text-xl font-semibold text-gray-800">Menú Cursos</h2>
+            </div>
+            <span [routerLink]="['/menucursos/insertcurso']" routerLinkActive="router-link-active" class="material-icons bg-transparent text-red-700 font-semibold py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                    create_new_folder
+              </span>
+        </div>
+    </div>
+    <div class="shadow overflow-hidden rounded border-b border-gray-200">
+        <table class="min-w-full bg-white">
+            <thead class="bg-gray-800 text-white">
+                <tr>
+                    <td class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Profesor</td>
+                    <td class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Titulo</td>
+                    <td class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Descripcion</td>
+                    <td class="text-left py-3 px-4 uppercase font-semibold text-sm">Genero</td>
+                    <td class="text-left py-3 px-4 uppercase font-semibold text-sm">Asistentes</td>
+                    <td class="text-left py-3 px-4 uppercase font-semibold text-sm">Editar</td>
+                    <td class="text-left py-3 px-4 uppercase font-semibold text-sm">Eliminar</td>
+                </tr>
+            </thead>
+            <tbody class="text-gray-700">
+                <tr *ngFor="let curso of cursos">
+                    <td class="w-1/3 text-left py-3 px-4">{{curso.profesor}}</td>
+                    <td class="w-1/3 text-left py-3 px-4">{{curso.titulo}}</td>
+                    <td class="text-left py-3 px-4">{{curso.descripcion}}</td>
+                    <td class="text-left py-3 px-4">{{curso.genero}}</td>
+                    <td class="text-left py-3 px-4">{{curso.asistentes}}</td>
+                    <td class="text-left py-3 px-4">
+                        <span routerLinkActive="router-link-active" class="material-icons bg-transparent text-blue-700 font-semibold py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                                edit
+                      </span>
+                    </td>
+                    <td class="text-left py-3 px-4">
+                        <span (click)="deleteCurso(curso._id)" routerLinkActive="router-link-active" class="material-icons bg-transparent text-red-700 font-semibold py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                            delete_sweep
+                      </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

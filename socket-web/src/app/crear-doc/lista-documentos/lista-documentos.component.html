@@ -1,0 +1,6 @@
+<div class='sidenav'>
+  <span  (click)='nuevoDocumento()'>Nueva Encuestas</span>
+  <span [class.selected] ='docId === actualDoc' (click)='leerDocumento(docId)' *ngFor='let docId of documentos | async'>
+    {{docId}}
+  </span>
+</div>
