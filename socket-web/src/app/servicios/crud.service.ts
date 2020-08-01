@@ -76,13 +76,13 @@ export class CrudService {
       .put<DataRx>(
         `${this.url}${endPoint}?id=${_id}`,
         dataSend,
-       // this.server.obtenerHeaders()
+        this.server.obtenerHeaders()
       )
       .subscribe((data) => {
         console.log(data)
         if (data.transaccion) {
           returnData = data.data;
-         // this.permissions.decodeToken(data.token);
+          this.permissions.decodeToken(data.token);
         } else {
           alert(data.msg);
         }
@@ -99,7 +99,7 @@ export class CrudService {
       .subscribe((data) => {
         if (data.transaccion) {
           returnData = data.data;
-         // this.permissions.decodeToken(data.token);
+          this.permissions.decodeToken(data.token);
         } else {
           alert(data.msg);
         }

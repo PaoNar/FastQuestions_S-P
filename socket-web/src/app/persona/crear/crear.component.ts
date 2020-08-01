@@ -22,7 +22,7 @@ export class CrearComponent implements OnInit {
       nombre: ['', [Validators.required]],
       apellido: ['', [Validators.required]],
       email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      passw: ['', [Validators.required]],
       verifypassw: ['', [Validators.required]],
     });
   }
@@ -31,10 +31,10 @@ export class CrearComponent implements OnInit {
     let nombre = this.personaForm.get('nombre').value;
       let apellido = this.personaForm.get('apellido').value;
       let email = this.personaForm.get('email').value;
-      let password = this.personaForm.get('password').value;
+      let passw = this.personaForm.get('passw').value;
       let verifypassw = this.personaForm.get('verifypassw').value;
       if (this.personaForm.valid) {
-        if (password != verifypassw) {
+        if (passw != verifypassw) {
           Swal.fire({
             position: 'center',
             icon: 'error',
@@ -48,10 +48,10 @@ export class CrearComponent implements OnInit {
               nombre,
               apellido,
               email,
-              password,
+              passw,
             },
           };
-          let user = this.crudService.postData(datos,'insertar_persona');
+          let user = this.crudService.postData(datos,'nuevo_persona');
           if (user) {
               this.router.navigate(['/persona']);
           }

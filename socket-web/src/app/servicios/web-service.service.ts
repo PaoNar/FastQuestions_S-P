@@ -21,7 +21,7 @@ export class WebServiceService {
     const optionsHeaders = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        //Authorization: this.permisos.obtenerToken()
+        Authorization: this.permisos.obtenerToken()
       })
     };
     return optionsHeaders;

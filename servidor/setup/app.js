@@ -6,19 +6,19 @@ const express = require('express'),
     connectDb = require('../config/db'),
     passport = require('passport'),
     cors = require('cors'),
-    parseurl = require('parseurl')
+    parseurl = require('parseurl');
 
 //designamos a un archivo donde van estar las rutas para poder utilizar el servidor
-let app = express()
-    session = require('express-session')
-    usuarioRuta = require('../rutas/usuarios.rutas')
-    fileRuta = require('../rutas/files.rutas')
-    personaRuta = require('../rutas/persona.rutas')
+let app = express(),
+    session = require('express-session'),
+    usuarioRuta = require('../rutas/usuarios.rutas'),
+    fileRuta = require('../rutas/files.rutas'),
+    personaRuta = require('../rutas/persona.rutas'),
 
     db = connectDb(),
 
     sess = {
-        secret: 'hola',
+        secret: process.env.KEY_SESSION,
         resave: false,
         saveUninitialized: true,
         name: 'sessionID',
@@ -30,7 +30,7 @@ let app = express()
     },
     corsOptions = {
         origin: 'http://localhost:4200',
-        optionsSuccessStatus: 200
+        optionsSuccessStatus: 200,
     }
 
 
@@ -74,7 +74,7 @@ app.use(function (req, res, next) {
 
 
 //base de nuestro servidor
-app.use('/api', usuarioRuta)
+//app.use('/api', usuarioRuta)
 app.use('/api', fileRuta)
 app.use('/api', personaRuta)
 

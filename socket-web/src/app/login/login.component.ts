@@ -3,7 +3,7 @@ import { DataRx } from '../modelos/data-rx';
 import { HttpHeaders} from '@angular/common/http';
 import { LoginService} from '../servicios/login.service';
 import { Router} from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
@@ -70,7 +70,8 @@ export class LoginComponent implements  OnInit{
       (res: DataRx) => {
         if (res.transaccion) {
           if (this.permisos.decodificarToken(res.token)) {
-            this.router.navigate(['/crear-doc']);
+            this.router.navigate(['/persona']);
+            //this.router.navigate(['/crear-doc']);
             console.log(this.permisos.ObtenerUsuarioLogin());
           }
         } else {
@@ -85,6 +86,14 @@ export class LoginComponent implements  OnInit{
         console.error(error);
       }
     );
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter' || event.code === 'Enter') {
+      event.preventDefault();
+      this.login();
+    }
   }
   
 }

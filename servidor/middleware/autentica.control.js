@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 
 let autentica = (req, res, next) =>{
     let token = req.headers.authorization || null 
+
     console.log(token)
     jwt.verify(token, process.env.KEY_JWT, (err, decode) =>{
         if(err){
@@ -15,9 +16,9 @@ let autentica = (req, res, next) =>{
         }else {
             req.decode = decode
             console.log(decode)
-            let token = jwt.sign({data: decode.data}, req.sessionID, {
+            let token = jwt.sign({data: decode.data}, process.env.KEY_JWT, {
                 algorithm: 'HS256',
-                expiresIn: parseInt(process.env.TIEMPO)
+                expiresIn: 300
             })
             req.token = token
             next()

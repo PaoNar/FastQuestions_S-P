@@ -15,7 +15,6 @@ export class PersonaComponent implements OnInit {
   user=[];
   private url:string;
   constructor(  private crudService:CrudService,
-    private permisosService:PermisosService,
     private servidor: WebServiceService,
     private permisos:PermisosService,
     private router:Router,
@@ -29,13 +28,14 @@ export class PersonaComponent implements OnInit {
 
   getPersonas(): void {
     this.http
-      .get(`${this.url}get_persona`)
+      .get(`${this.url}get_persona`, this.servidor.obtenerHeaders())
       .subscribe((data: any) => {
         data.data.forEach((element) => {
           this.user.push(element);
         });
       });
   }
+
   public edit(user): void {
      sessionStorage.setItem('user', JSON.stringify(user));
      this.router.navigate(['/persona/editar']);
@@ -43,7 +43,6 @@ export class PersonaComponent implements OnInit {
 
    delet(_id) {
      console.log(_id)
-     this.crudService.deleteData('delete_idpersona', _id);
-   
+     this.crudService.deleteData('delete_idpersona', _id); 
  }
 }

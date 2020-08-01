@@ -8,28 +8,30 @@ const express = require("express"),
   
 
 let api = express.Router(),
-  usuarioControl = require("../controles/usuarios.control")
+  personaControl = require("../controles/persona.control")
 
 //users ENDPOINT
 api.get("/", (req, res) => {
   res.send("Hola API");
 });
 
-api.get('/get_persona', usuarioControl.getUsuarios);
-api.get('/get_idpersona', usuarioControl.getIdUsuario);
+api.get('/get_persona', autenticaControl.autentica, personaControl.getUsuarios);
+api.get('/get_idpersona', autenticaControl.autentica, personaControl.getIdUsuario);
 
-api.post("/insertar_persona", usuarioControl.allUsuarios);
-api.post("/one_persona", usuarioControl.oneUsuario);
+//api.post("/insertar_persona", personaControl.allUsuarios);
+//api.post("/one_persona", autenticaControl.autentica, personaControl.oneUsuario);
 
-api.put("/update_persona", usuarioControl.updateOneUsuario);
+api.put("/update_persona", autenticaControl.autentica, personaControl.updateOneUsuario);
 
-api.delete("/delete_persona", usuarioControl.borrarAllUsuario);
+api.delete("/delete_persona", personaControl.borrarAllUsuario);
 
-api.delete("/delete_idpersona", usuarioControl.borrarOneUsuario);
+api.delete("/delete_idpersona", autenticaControl.autentica, personaControl.borrarOneUsuario);
 
 
-api.post('/nuevo_persona', [passwordControl.codificarPassword], usuarioControl.nuevoUsuario);
-//api.post('/login',  usuarioControl.login) 
+api.post('/nuevo_persona', [autenticaControl.autentica, passwordControl.codificarPassword], personaControl.nuevoUsuario);
+
+//=>
+api.post('/login',  personaControl.login) 
 
 
 

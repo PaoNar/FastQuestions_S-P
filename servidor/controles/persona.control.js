@@ -3,69 +3,85 @@
 
 const fs = require("fs"),
   path = require('path'),
-  usuarios = require("../modelos/userModel");
+  usuarios = require("../modelos/personaModel");
   bcrypt = require('bcrypt'),
   jwt = require('jsonwebtoken')
 
-
-
-  //Trae todos los datos
-  let getUsuarios = async (req, res) =>{
-    let data = await usuarios.find()
-    if(data) {
+  //Trae todos los datos OK
+  let getUsuarios = (req, res) => {
+    usuarios
+    .find()
+    .then((data) => {
       res.status(200).json({
-        transaccion:true,
+        ok: true,
         data,
-        msg:'listo',
-      })
-    } else {
-      res.status(500).json({
-        transaccion: false,
-        data: null,
-        msg: err
+        msg: "ready",
+        token: req.token,
+      });
     })
-    }
+    .catch((err) => {
+      res.status(500).json({
+        ok: false,
+        data: null,
+        msg: err,
+      });
+    });
+    // let data = await usuarios.find()
+    // if(data) {
+    //   res.status(200).json({
+    //     transaccion: true,
+    //     data,
+    //     msg:'listo',
+    //     token: req.token,
+    //   })
+    // } else {
+    //   res.status(500).json({
+    //     transaccion: false,
+    //     data: null,
+    //     msg: err
+    // })
+    // }
   }
 
   //inserta un usuario
-  let oneUsuario =  (req, res) =>{
-    nombre = req.body.nombre
-    apellido = req.body.apellido
-    usuarios.create({nombre, apellido})
-      .then(data =>{
-        res.status(200).json({
-          transaccion: true,
-          data: data,
-          msg: 'listo'
-        })
-      }).catch( err =>{
-        res.status(500).json({
-          transaccion: false,
-          data: null,
-          msg: err
-      })
-  })
-}
+//   let oneUsuario =  (req, res) =>{
+//     nombre = req.body.nombre
+//     apellido = req.body.apellido
+//     usuarios.create({nombre, apellido})
+//       .then(data =>{
+//         res.status(200).json({
+//           transaccion: true,
+//           data: data,
+//           msg: 'listo'
+//         })
+//       }).catch( err =>{
+//         res.status(500).json({
+//           transaccion: false,
+//           data: null,
+//           msg: err
+//       })
+//   })
+// }
   
 
  //insertar varios usuarios
- let allUsuarios = (req, res) =>{
-    data = req.body.data
-    usuarios.insertMany(data)
-      .then(data =>{
-        res.status(200).json({
-          transaccion: true,
-          data: data,
-          msg: 'listo'
-        })
-      }).catch( err =>{
-        res.status(500).json({
-          transaccion: false,
-          data: null,
-          msg: err
-      })
-  })
-}
+//  let allUsuarios = (req, res) =>{
+//     data = req.body.data
+//     usuarios.insertMany(data)
+//       .then(data =>{
+//         res.status(200).json({
+//           transaccion: true,
+//           data: data,
+//           msg: 'listo'
+//         })
+//       }).catch( err =>{
+//         res.status(500).json({
+//           transaccion: false,
+//           data: null,
+//           msg: err
+//       })
+//   })
+// }
 
 
 //Actualizar un usuario 
@@ -77,7 +93,8 @@ let updateOneUsuario = (req, res) =>{
       res.status(200).json({
         transaccion: true,
         data: data,
-        msg: 'listo'
+        msg: 'listo',
+        token: req.token,
       })
     }).catch( err =>{
       res.status(500).json({
@@ -93,12 +110,14 @@ let updateOneUsuario = (req, res) =>{
 //Buscar por id
 let getIdUsuario = (req, res) =>{
     id = req.query.id
+
     usuarios.find({'_id': id})
       .then(data =>{
         res.status(200).json({
           transaccion: true,
           data: data,
-          msg: 'listo'
+          msg: 'listo',
+          token: req.token,
         })
       }).catch( err =>{
         res.status(500).json({
@@ -114,12 +133,14 @@ let getIdUsuario = (req, res) =>{
 //Borrar one
 let borrarOneUsuario = (req, res) =>{
     id = req.query.id
+
     usuarios.deleteOne({'_id': id})
       .then(data =>{
         res.status(200).json({
           transaccion: true,
           data: data,
-          msg: `${data.deletedCount}`
+          msg: `${data.deletedCount}`,
+          token: req.token,
         })
       }).catch( err =>{
         res.status(500).json({
@@ -138,7 +159,8 @@ let borrarAllUsuario = (req, res) =>{
         res.status(200).json({
           transaccion: true,
           data: data,
-          msg: 'listo'
+          msg: 'listo',
+          token: req.token,
         })
       }).catch( err =>{
         res.status(500).json({
@@ -153,40 +175,45 @@ let borrarAllUsuario = (req, res) =>{
 
 let nuevoUsuario = async(req, res) =>{
   let usuario = req.body.data
+
   usuarios.create(usuario)
     .then((data) =>{
         res.status(200).json({
+          transaccion: true,
             data,
             msg:'usuario OK',
-
+            token: req.token,
         })
 
     }).catch(err =>{
         res.status(500).json({
-            data: null,
+          transaccion: false,
+          data: null,
             msg:'No se pudo crear el usuario'
-            
     })
   })
 }
 
 
 let login = (req, res) => {
-   let data = req.body.data,
+   let {data} = req.body,
       email = data.email,
       password = data.password;
 
       //console.log(data)
+      //console.log(data.email)
+      //console.log(data.password)
+
       usuarios.find({ email }).then((data) => {
       //console.log(data + "mongo")
-      if (data[0].email === email) {
+      //if (data[0].email === email) {
               let tokenBody = {
                       email: data[0].email,
                       sessionID: data[0].sessionID,
                   },
                   token = jwt.sign({ data: tokenBody }, process.env.KEY_JWT, {
                       algorithm: "HS256",
-                      expiresIn: 6000,
+                      expiresIn: 120,
                   });
                   
               bcrypt.compareSync(password, data[0].passw) ?
@@ -201,15 +228,15 @@ let login = (req, res) => {
                       data: null,
                       msg: "Password incorrecto",
                   });
-          } else {
-              return res.status(404)
-          }
+         // } else {
+          //    return res.status(404)
+          //}
       })
       .catch((err) => {
           return res.status(404).json({
-              ok: false,
+              transaccion: false,
               data: null,
-              msg: "Email incorrecto",
+              msg: "Email incorrecto" + err,
           });
       });
 
@@ -220,8 +247,8 @@ let login = (req, res) => {
 
 module.exports = {
   getUsuarios,
-  oneUsuario,
-  allUsuarios,
+  //oneUsuario,
+  //allUsuarios,
   updateOneUsuario,
   getIdUsuario,
   borrarOneUsuario,

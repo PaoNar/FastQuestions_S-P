@@ -11,7 +11,6 @@ import { SocketJwtService } from './servicios/socket-jwt.service';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { MenucursosComponent } from './menucursos/menucursos.component';
 import { PersonaComponent } from './persona/persona.component';
 //import { CrearDocComponent } from './crear-doc/crear-doc.component';
 
@@ -21,7 +20,6 @@ import { PersonaComponent } from './persona/persona.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    MenucursosComponent,
     PersonaComponent
   ],
   imports: [
