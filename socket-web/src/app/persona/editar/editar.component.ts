@@ -46,11 +46,14 @@ export class EditarComponent implements OnInit {
         let userData= this.CrudService.putData(
           Data,'update_persona',this.user._id);
           console.log(userData)
+          
        if (userData) {
          console.log(this.user._id)
          console.log(Data)
          this.router.navigate(['/persona']);
          localStorage.clear();
+         window.location.reload();
+         
        }
      }
   }

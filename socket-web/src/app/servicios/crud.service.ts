@@ -100,6 +100,7 @@ export class CrudService {
         if (data.transaccion) {
           returnData = data.data;
           this.permissions.decodeToken(data.token);
+          
         } else {
           alert(data.msg);
         }

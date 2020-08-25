@@ -70,7 +70,7 @@ export class LoginComponent implements  OnInit{
       (res: DataRx) => {
         if (res.transaccion) {
           if (this.permisos.decodificarToken(res.token)) {
-            this.router.navigate(['/persona']);
+            this.router.navigate(['/menu']);
             //this.router.navigate(['/crear-doc']);
             console.log(this.permisos.ObtenerUsuarioLogin());
           }

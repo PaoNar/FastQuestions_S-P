@@ -12,6 +12,17 @@ import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { PersonaComponent } from './persona/persona.component';
+import { MenuComponent } from './menu/menu.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { TablaPersonaComponent } from './tabla-persona/tabla-persona.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 //import { CrearDocComponent } from './crear-doc/crear-doc.component';
 
 //const config: SocketIoConfig = {url: 'http://localhost:3500', options: {} }; 
@@ -20,7 +31,9 @@ import { PersonaComponent } from './persona/persona.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    PersonaComponent
+    PersonaComponent,
+    MenuComponent,
+    TablaPersonaComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +43,16 @@ import { PersonaComponent } from './persona/persona.component';
     SocketIoModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [SocketJwtService],
   bootstrap: [AppComponent]

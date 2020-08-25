@@ -1,67 +1,254 @@
-<p>persona works!</p>
-<button routerLink='/persona/crear'>  Nueva Persona </button>
+<!-- Dark Header component -->
+<!-- Fontswesome -->
+<!-- 
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js"></script>
 
-<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-    <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-        <table class="min-w-full leading-normal">
+<header class="text-gray-100 bg-gray-900 body-font shadow w-full">
+  <div
+    class="container mx-auto flex flex-wrap p-4 flex-col md:flex-row items-center"
+  >
+    <a
+      class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center lg:items-center lg:justify-center mb-4 md:mb-0"
+    >
+      <img
+        src="https://pazly.dev/logo.png"
+        style="height: 20px; margin-top: 5px; margin-bottom: 5px;"
+        alt="logo"
+      />
+
+      <span class="ml-2 text-xl">pazly.dev</span>
+    </a>
+    <div class="lg:w-4/5 inline-flex lg:justify-end ml-5 lg:ml-0">
+      <a
+        href="/"
+        class="bg-indigo-700 hover:bg-indigo-500 text-white ml-5 py-2 px-3 rounded-lg"
+      >
+        Salir
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="h-screen flex">
+  <nav
+    class="w-56 bg-white dark:bg-gray-800 select-none overflow-y-auto transition duration-500 ease-in-out"
+  >
+    <div class="flex flex-col items-center">
+      <h1
+        class="text-6xl font-light text-pink-600 dark:text-pink-400 mt-0 transition duration-500 ease-in-out"
+      >
+        pleo
+      </h1>
+
+      <img
+        class="h-16 w-16 rounded-full object-cover mt-4"
+        src="https://pazly.dev/logo.png"
+        alt="mickey mouse Profile"
+      />
+      <span
+        class="capitalize mt-2 mb-6 dark:text-gray-400 transition duration-500 ease-in-out"
+      >
+        mickey
+      </span>
+    </div>
+
+    <ul>
+      <li
+        class="pl-8 py-2 font-semibold text-gray-700 dark:text-gray-400 hover:bg-pink-200 dark-hover:bg-pink-500 mb-2 transition duration-500 ease-in-out"
+      >
+        <button
+          class="focus:text-pink-500 dark-focus:text-pink-400 focus:outline-none w-full transition duration-500 ease-in-out"
+        >
+          <span class="flex items-center">
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 448 512">
+              <path
+                d="M128 148v-40c0-6.6 5.4-12 12-12h40c6.6 0 12
+								5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6
+								0-12-5.4-12-12zm140 12h40c6.6 0 12-5.4
+								12-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12
+								12v40c0 6.6 5.4 12 12 12zm-128 96h40c6.6 0 12-5.4
+								12-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12
+								12v40c0 6.6 5.4 12 12 12zm128 0h40c6.6 0 12-5.4
+								12-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12
+								12v40c0 6.6 5.4 12 12 12zm-76
+								84v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12
+								12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4
+								12-12zm76 12h40c6.6 0 12-5.4
+								12-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12
+								12v40c0 6.6 5.4 12 12 12zm180 124v36H0v-36c0-6.6
+								5.4-12 12-12h19.5V24c0-13.3 10.7-24
+								24-24h337c13.3 0 24 10.7 24 24v440H436c6.6 0 12
+								5.4 12 12zM79.5 463H192v-67c0-6.6 5.4-12
+								12-12h40c6.6 0 12 5.4 12 12v67h112.5V49L80 48l-.5
+								415z"
+              ></path>
+            </svg>
+            <button type="button" routerLink="/persona/crear">
+              <span class="mr-2">Home</span>
+            </button>
+          </span>
+        </button>
+      </li>
+
+      <li
+        class="pl-8 py-2 font-semibold text-gray-700 dark:text-gray-400 hover:bg-pink-200 dark-hover:bg-pink-500 mb-2 transition duration-500 ease-in-out"
+      >
+        <button
+          class="focus:text-pink-500 dark-focus:text-pink-400 focus:outline-none w-full transition duration-500 ease-in-out"
+        >
+          <span class="flex items-center">
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M21 8V6H7v2h14m0 8v-5H7v5h14m0-12a2 2 0 012
+								2v10a2 2 0 01-2 2H7a2 2 0 01-2-2V6c0-1.11.89-2
+								2-2h14M3 20h15v2H3a2 2 0 01-2-2V9h2v11z"
+              ></path>
+            </svg> -->
+            <!-- <button type="button" routerLink="/persona">
+              <span class="mr-2">Administrar Usuario</span>
+            </button> -->
+            <!-- <a
+              href=""
+              class="bg-indigo-700 hover:bg-indigo-500 text-white ml-5 py-2 px-3 rounded-lg"
+            >
+              Administrar User
+            </a>
+          </span>
+        </button>
+      </li>
+
+      <li
+        class="pl-8 py-2 font-semibold text-gray-700 dark:text-gray-400 hover:bg-pink-200 dark-hover:bg-pink-500 transition duration-500 ease-in-out"
+      >
+        <button
+          class="focus:text-pink-500 dark-focus:text-pink-400 focus:outline-none w-full transition duration-500 ease-in-out"
+        >
+          <span class="flex items-center">
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 496 512">
+              <path
+                d="M248 104c-53 0-96 43-96 96s43 96 96 96 96-43
+								96-96-43-96-96-96zm0 144c-26.5
+								0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5
+								48-48 48zm0-240C111 8 0 119 0 256s111 248 248 248
+								248-111 248-248S385 8 248 8zm0 448c-49.7
+								0-95.1-18.3-130.1-48.4 14.9-23 40.4-38.6
+								69.6-39.5 20.8 6.4 40.6 9.6 60.5 9.6s39.7-3.1
+								60.5-9.6c29.2 1 54.7 16.5 69.6 39.5-35 30.1-80.4
+								48.4-130.1
+								48.4zm162.7-84.1c-24.4-31.4-62.1-51.9-105.1-51.9-10.2
+								0-26 9.6-57.6 9.6-31.5 0-47.4-9.6-57.6-9.6-42.9
+								0-80.6 20.5-105.1 51.9C61.9 339.2 48 299.2 48
+								256c0-110.3 89.7-200 200-200s200 89.7 200 200c0
+								43.2-13.9 83.2-37.3 115.9z"
+              ></path>
+            </svg>
+            <a
+              href="/persona"
+              class="bg-indigo-700 hover:bg-indigo-500 text-white ml-5 py-2 px-3 rounded-lg"
+            >
+              Asistente
+            </a>
+          </span>
+        </button>
+      </li>
+    </ul>
+  </nav> -->
+
+<app-menu>
+
+  <main
+    class="flex-1 bg-gray-200 dark:bg-gray-900 overflow-y-auto transition duration-500 ease-in-out"
+  >
+    <div
+      class="px-10 py-12 text-gray-700 dark:text-gray-500 transition duration-500 ease-in-out"
+    >
+      <button routerLink="/persona/crear">Nueva Persona</button>
+
+      <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+        <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+          <table class="min-w-full leading-normal">
             <thead>
-                <tr>
-                    <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Nombre
-                    </th>
-                    <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Apellido
-                    </th>
-                    <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Email
-                    </th>
-                    <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        editar
-                    </th>
-                    <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        eliminar
-                    </th>
-                </tr>
+              <tr>
+                <th
+                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                >
+                  Nombre
+                </th>
+                <th
+                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                >
+                  Apellido
+                </th>
+                <th
+                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                >
+                  Email
+                </th>
+                <th
+                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                >
+                  editar
+                </th>
+                <th
+                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                >
+                  eliminar
+                </th>
+              </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let user of user">
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 w-10 h-10">
-                                <img class="w-full h-full rounded-full"
-                                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                                    alt="" />
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-gray-900 whitespace-no-wrap">
-                                    {{user.nombre}}
-                                </p>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">{{user.apellido}}</p>
-                    </td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">{{user.email}}</p>
-                    </td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <button (click)="edit(user)" class="material-icons text-gray-900 whitespace-no-wrap">
-                          edit
-                        </button>
-                    </td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <button (click)="delet(user._id)" class="material-icons text-gray-900 whitespace-no-wrap">
-                          person_remove
-                        </button>
-                    </td>
-                </tr>
+              <tr *ngFor="let user of user">
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 w-10 h-10">
+                      <img
+                        class="w-full h-full rounded-full"
+                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+                        alt=""
+                      />
+                    </div>
+                    <div class="ml-3">
+                      <p class="text-gray-900 whitespace-no-wrap">
+                        {{ user.nombre }}
+                      </p>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                  <p class="text-gray-900 whitespace-no-wrap">
+                    {{ user.apellido }}
+                  </p>
+                </td>
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                  <p class="text-gray-900 whitespace-no-wrap">
+                    {{ user.email }}
+                  </p>
+                </td>
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                  <button
+                    (click)="edit(user)"
+                    class="material-icons text-gray-900 whitespace-no-wrap"
+                  >
+                    edit
+                  </button>
+                </td>
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                  <button
+                    (click)="delet(user._id)"
+                    class="material-icons text-gray-900 whitespace-no-wrap"
+                  >
+                    person_remove
+                  </button>
+                </td>
+              </tr>
             </tbody>
-        </table>
+          </table>
+        </div>
+      </div>
     </div>
-</div>
+  </main>
+</app-menu>

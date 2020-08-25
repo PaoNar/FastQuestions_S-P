@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TablaPersonaRoutingModule } from './tabla-persona-routing.module';
 
-import { MenuRoutingModule } from './menu-routing.module';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    MenuRoutingModule
+    TablaPersonaRoutingModule 
   ]
 })
-export class MenuModule { }
+export class TablaPersonaModule { }
