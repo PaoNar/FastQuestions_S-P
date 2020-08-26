@@ -50,9 +50,9 @@ export class EditarComponent implements OnInit {
        if (userData) {
          console.log(this.user._id)
          console.log(Data)
-         this.router.navigate(['/persona']);
+         this.router.navigate(['/tabla-persona']);
          localStorage.clear();
-         window.location.reload();
+        //  window.location.reload();
          
        }
      }

@@ -4,7 +4,7 @@ import { PermisosService } from '../servicios/permisos.service';
 import { WebServiceService } from '../servicios/web-service.service';
 import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http'
-import { Router,NavigationEnd} from '@angular/router';
+import { Router, NavigationEnd} from '@angular/router';
 
 @Component({
   selector: 'app-persona',
@@ -38,11 +38,16 @@ export class PersonaComponent implements OnInit {
 
   public edit(user): void {
      sessionStorage.setItem('user', JSON.stringify(user));
-     this.router.navigate(['/persona/editar']);
-   }
+     this.router.navigate(['/persona/editar' ]);
+     }
 
-   delet(_id) {
-     console.log(_id)
+  public delet(_id) {
      this.crudService.deleteData('delete_idpersona', _id); 
+     this.router.navigate(['/tabla-persona' ]);
+     Swal.fire(
+      'Good job!',
+      'You clicked the button!',
+      'success'
+    )
  }
 }

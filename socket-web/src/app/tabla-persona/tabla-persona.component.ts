@@ -1,30 +1,47 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit,  ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { TablaPersonaDataSource, TablaPersonaItem } from './tabla-persona-datasource';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { WebServiceService } from '../servicios/web-service.service';
+import { HttpClient } from '@angular/common/http'
+
 
 @Component({
   selector: 'app-tabla-persona',
   templateUrl: './tabla-persona.component.html',
   styleUrls: ['./tabla-persona.component.scss']
 })
-export class TablaPersonaComponent implements AfterViewInit, OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<TablaPersonaItem>;
-  dataSource: TablaPersonaDataSource;
+export class TablaPersonaComponent implements  OnInit {
+  user=[];
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
-
+  private url:string;
+  constructor( private servidor: WebServiceService,
+      private http:HttpClient) { 
+      this.url=servidor.obtenerUrl();
+    }
+  
   ngOnInit() {
-    this.dataSource = new TablaPersonaDataSource();
+    this.getPersonas();
+    
   }
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  // }
+
+  getPersonas(): void {
+    this.http
+      .get(`${this.url}get_persona`, this.servidor.obtenerHeaders())
+      .subscribe((data: any) => {
+        data.data.forEach((element) => {
+          this.user.push(element);
+        });
+      });
   }
 }
+
+
+
+
+
