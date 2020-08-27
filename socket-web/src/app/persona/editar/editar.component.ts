@@ -26,12 +26,14 @@ export class EditarComponent implements OnInit {
     this.personaForm = this.formBuilder.group({
       nombre: ['', [Validators.required]],
        apellido: ['', [Validators.required]],
+       genero: ['', [Validators.required]],
        email: ['', [Validators.required]],
    });
   }
   update(){
     let nombre = this.personaForm.get('nombre').value;
     let apellido = this.personaForm.get('apellido').value;
+    let genero = this.personaForm.get('genero').value;
     let email = this.personaForm.get('email').value;
     if (this.personaForm.invalid) {
       console.log('Formulario no valido')
@@ -40,6 +42,7 @@ export class EditarComponent implements OnInit {
           data: {
             nombre,
             apellido,
+            genero,
             email,
           },
         };
@@ -52,7 +55,6 @@ export class EditarComponent implements OnInit {
          console.log(Data)
          this.router.navigate(['/tabla-persona']);
          localStorage.clear();
-        //  window.location.reload();
          
        }
      }

@@ -7,6 +7,7 @@ const personaModel = Schema({
   titulo: { type: String },
   nombre: { type: String },
   apellido: { type: String },
+  genero: { type: String },
   email:  { 
     type: String,
     require: true,

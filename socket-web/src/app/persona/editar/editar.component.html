@@ -26,6 +26,16 @@
           placeholder="Apellido"
         />
       </div>
+      <div class="w-full mb-12">
+        <label class="text-gray-700 text-xs font-bold mb-2"></label>
+        <input
+          formControlName="genero"
+          [(ngModel)]="user.genero"  name="genero"
+          type="text"
+          class="px-3 py-3 placeholder-gray-600 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
+          placeholder="Genero"
+        />
+      </div>
       <div class="w-full mb-3">
         <label class="text-gray-700 text-xs font-bold mb-2">Email</label>
         <input
