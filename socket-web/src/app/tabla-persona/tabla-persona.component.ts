@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { WebServiceService } from '../servicios/web-service.service';
 import { HttpClient } from '@angular/common/http';
-import {Chart} from 'chart.js'
+import { Chart} from 'chart.js'
 
 
 @Component({
@@ -56,7 +56,7 @@ export class TablaPersonaComponent implements  OnInit {
         responsive: true,
         title: {
           display: true,
-          text: 'Doughnut Chart'
+          // text: 'Doughnut Chart'
         },legend: {
 					position: 'top',
 				},animation: {
