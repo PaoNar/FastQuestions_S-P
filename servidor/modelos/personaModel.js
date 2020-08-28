@@ -15,7 +15,8 @@ const personaModel = Schema({
     unique: true,
   },
   passw: { type: String },
-  createAt: { type: String },
+  // createAt: { type: String },
+  lastActiveAt: { type: Date},
   sessionID: { type: String }
 });
 

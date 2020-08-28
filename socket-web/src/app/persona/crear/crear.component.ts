@@ -22,6 +22,7 @@ export class CrearComponent implements OnInit {
       nombre: ['', [Validators.required]],
       apellido: ['', [Validators.required]],
       email: ['', [Validators.required]],
+      lastActiveAt: ['', [Validators.required]],
       passw: ['', [Validators.required]],
       verifypassw: ['', [Validators.required]],
     });
@@ -31,6 +32,7 @@ export class CrearComponent implements OnInit {
     let nombre = this.personaForm.get('nombre').value;
       let apellido = this.personaForm.get('apellido').value;
       let email = this.personaForm.get('email').value;
+      let lastActiveAt = this.personaForm.get('lastActiveAt').value;
       let passw = this.personaForm.get('passw').value;
       let verifypassw = this.personaForm.get('verifypassw').value;
       if (this.personaForm.valid) {
@@ -48,6 +50,7 @@ export class CrearComponent implements OnInit {
               nombre,
               apellido,
               email,
+              lastActiveAt,
               passw,
             },
           };
