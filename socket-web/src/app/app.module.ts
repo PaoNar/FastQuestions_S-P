@@ -23,6 +23,9 @@ import { TablaPersonaComponent } from './tabla-persona/tabla-persona.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MenuEncuestadorComponent } from './menu-encuestador/menu-encuestador.component';
+import { EncuestadorComponent } from './encuestador/encuestador.component';
+import { EncuestasComponent } from './encuestas/encuestas.component';
 //import { CrearDocComponent } from './crear-doc/crear-doc.component';
 
 //const config: SocketIoConfig = {url: 'http://localhost:3500', options: {} }; 
@@ -33,7 +36,10 @@ import { MatSortModule } from '@angular/material/sort';
     LoginComponent,
     PersonaComponent,
     MenuComponent,
-    TablaPersonaComponent
+    TablaPersonaComponent,
+    MenuEncuestadorComponent,
+    EncuestadorComponent,
+    EncuestasComponent
   ],
   imports: [
     BrowserModule,
