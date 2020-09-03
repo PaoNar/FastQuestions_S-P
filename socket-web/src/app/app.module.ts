@@ -26,6 +26,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MenuEncuestadorComponent } from './menu-encuestador/menu-encuestador.component';
 import { EncuestadorComponent } from './encuestador/encuestador.component';
 import { EncuestasComponent } from './encuestas/encuestas.component';
+import { NuevaEncuestaComponent } from './nueva-encuesta/nueva-encuesta.component';
 //import { CrearDocComponent } from './crear-doc/crear-doc.component';
 
 //const config: SocketIoConfig = {url: 'http://localhost:3500', options: {} }; 
@@ -39,7 +40,8 @@ import { EncuestasComponent } from './encuestas/encuestas.component';
     TablaPersonaComponent,
     MenuEncuestadorComponent,
     EncuestadorComponent,
-    EncuestasComponent
+    EncuestasComponent,
+    NuevaEncuestaComponent
   ],
   imports: [
     BrowserModule,

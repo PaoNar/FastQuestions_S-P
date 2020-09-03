@@ -12,7 +12,9 @@ const routes: Routes = [
   {path: 'persona', loadChildren: () =>import('./persona/persona.module').then(m =>m.PersonaModule)},
   {path: 'menu-encuestador', loadChildren: () =>import('./menu-encuestador/menu-encuestador.module').then(m =>m.MenuEncuestadorModule)},
   {path: 'encuestador', loadChildren: () =>import('./encuestador/encuestador.module').then(m =>m.EncuestadorModule)},
-  {path: 'encuestas', loadChildren: () =>import('./encuestas/encuestas.module').then(m =>m.EncuestasModule)}
+  {path: 'encuestas', loadChildren: () =>import('./encuestas/encuestas.module').then(m =>m.EncuestasModule)},
+  {path: 'nueva-encuesta', loadChildren: () =>import('./nueva-encuesta/nueva-encuesta.module').then(m =>m.NuevaEncuestaModule)},
+
 
 
 ];
