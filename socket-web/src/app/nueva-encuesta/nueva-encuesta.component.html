@@ -2,64 +2,95 @@
     <div id="login-section">
         <!-- {{registerForm.value | json  }} -->
         <div class="login-box">
-            <h1>ENCUESTA</h1>
-            <form [formGroup]="registerForm">
-                <div>
-                    <span *ngIf="registerForm.controls['mail'].errors?.required" id="errors">Titulo de la encuesta </span>
-                    <input type="text" id="titulo" name="titulo" placeholder="Ej. Hot dog vs Papas fritas">
-                <br>    
-                </div>
-                <div>
-                    <span *ngIf="registerForm.controls['mail'].errors?.required" id="errors">Encuestador </span>
-                    <input type="text" id="titulo" name="titulo" placeholder="ej. Sedric">
-                <br>    
-                </div>  
-                <div>
-                    <span *ngIf="registerForm.controls['mail'].errors?.required" id="errors">Grupo a encuestar </span>
-                    <input type="text" id="titulo" name="titulo" placeholder="Hombres y Mujeres" >
-                <br>    
-                </div>
-
-                <div id="preguntas">
-
-                </div>
-                
-                <!-- <div class="textbox">
-                    <div formArrayName="operadora">
-                        <div *ngFor="let item of getPhones.controls; let i=index " [formGroupName]="i">
-                            <input class="form-control" type="text" placeholder="Pregunta" formControlName="phone1">
+          <h1>ENCUESTA</h1>
+          <form [formGroup]="registerForm">
+            <div>
+              <span
+                *ngIf="registerForm.controls['mail'].errors?.required"
+                id="errors"
+                >Titulo de la encuesta
+              </span>
+              <input
+                type="text"
+                id="tituloEncuesta"
+                name="titulo"
+                placeholder="Ej. Hot dog vs Papas fritas"
+              />
+              <br />
+            </div>
+            <div>
+              <span
+                *ngIf="registerForm.controls['mail'].errors?.required"
+                id="errors"
+                >Encuestador
+              </span>
+              <input
+                type="text"
+                id="titulo"
+                name="titulo"
+                placeholder="ej. Sedric"
+              />
+              <br />
+            </div>
+            <div>
+              <span
+                *ngIf="registerForm.controls['mail'].errors?.required"
+                id="errors"
+                >Grupo a encuestar
+              </span>
+              <input
+                type="text"
+                id="titulo"
+                name="titulo"
+                placeholder="Hombres y Mujeres"
+              />
+              <br />
+            </div>
+          </form>
+    
+          <div class="setEncuesta" id="preguntas">
+            <h1>Encuesta</h1>
+          </div>
+    
+          <!-- <div class="textbox">
+                        <div formArrayName="operadora">
+                            <div *ngFor="let item of getPhones.controls; let i=index " [formGroupName]="i">
+                                <input class="form-control" type="text" placeholder="Pregunta" formControlName="phone1">
+                            </div>
+                           
+                            <a class="dynamic" type="button" (click)="addPhones()">+</a>
+                            <a class="dynamic" type="button" (click)="deletePhones()">-</a>
                         </div>
-                       
-                        <a class="dynamic" type="button" (click)="addPhones()">+</a>
-                        <a class="dynamic" type="button" (click)="deletePhones()">-</a>
-                    </div>
-                    <input class="form-control" type="text" placeholder="Encuestados" >
-                    <select class="form-control" >
-                      <option></option>
-                      <option></option>
-                      <option></option>
-                      <option></option>
-                    </select>
-                    
-                </div> -->
-
-                <div>
-                    <!-- <span *ngIf="registerForm.controls['phone'].errors?.required" id="errors"> Celular obligatorio </span> -->
-                    <!-- <span *ngIf="registerForm.controls['phone'].errors?.pattern" id="errors"> Celular invalido </span> -->
-                </div>
-                <button (click)="submit()" type="button" class="btn">Enviar</button>
-                <button (click)="dibujarEncuesta()" type="button" class="btn">test</button>
-            </form>
-
+                        <input class="form-control" type="text" placeholder="Encuestados" >
+                        <select class="form-control" >
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                        </select>
+                        
+                    </div> -->
+    
+          <div>
+            <!-- <span *ngIf="registerForm.controls['phone'].errors?.required" id="errors"> Celular obligatorio </span> -->
+            <!-- <span *ngIf="registerForm.controls['phone'].errors?.pattern" id="errors"> Celular invalido </span> -->
+          </div>
+          <button (click)="submit()" type="button" class="btn">Enviar</button>
+          <button
+            (click)="saveForm()"
+            type="button"
+            class="bg-blue-500 px-6 py-3 border-2"
+          >
+            Save Form TEST
+          </button>
         </div>
-    </div>
-
-    <!-- <form [formGroup]="patternForm">
-          <input type="text" placeholder="correo" formControlName="example1"><br>
-          <span *ngIf="patternForm.controls['example1'].errors?.pattern"> Invalido1 </span>
-          <input type="text" placeholder="password" formControlName="example2"><br>
-          <span *ngIf="patternForm.controls['example2'].errors?.pattern"> Invalido2 </span>
-      </form> -->
-
+      </div>
+    
+      <!-- <form [formGroup]="patternForm">
+              <input type="text" placeholder="correo" formControlName="example1"><br>
+              <span *ngIf="patternForm.controls['example1'].errors?.pattern"> Invalido1 </span>
+              <input type="text" placeholder="password" formControlName="example2"><br>
+              <span *ngIf="patternForm.controls['example2'].errors?.pattern"> Invalido2 </span>
+          </form> -->
 
 </app-menu-encuestador>
