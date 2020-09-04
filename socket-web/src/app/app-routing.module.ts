@@ -4,7 +4,7 @@ import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'menu', loadChildren: () =>import('./menu/menu.module').then(m =>m.MenuModule)},
   {path: 'tabla-persona', loadChildren: () =>import('./tabla-persona/tabla-persona.module').then(m =>m.TablaPersonaModule)},
@@ -14,6 +14,8 @@ const routes: Routes = [
   {path: 'encuestador', loadChildren: () =>import('./encuestador/encuestador.module').then(m =>m.EncuestadorModule)},
   {path: 'encuestas', loadChildren: () =>import('./encuestas/encuestas.module').then(m =>m.EncuestasModule)},
   {path: 'nueva-encuesta', loadChildren: () =>import('./nueva-encuesta/nueva-encuesta.module').then(m =>m.NuevaEncuestaModule)},
+  {path: 'home', loadChildren: () =>import('./home/home.module').then(m =>m.HomeModule)},
+
 
 
 

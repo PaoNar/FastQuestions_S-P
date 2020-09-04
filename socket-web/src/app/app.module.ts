@@ -27,6 +27,7 @@ import { MenuEncuestadorComponent } from './menu-encuestador/menu-encuestador.co
 import { EncuestadorComponent } from './encuestador/encuestador.component';
 import { EncuestasComponent } from './encuestas/encuestas.component';
 import { NuevaEncuestaComponent } from './nueva-encuesta/nueva-encuesta.component';
+import { HomeComponent } from './home/home.component';
 //import { CrearDocComponent } from './crear-doc/crear-doc.component';
 
 //const config: SocketIoConfig = {url: 'http://localhost:3500', options: {} }; 
@@ -41,7 +42,8 @@ import { NuevaEncuestaComponent } from './nueva-encuesta/nueva-encuesta.componen
     MenuEncuestadorComponent,
     EncuestadorComponent,
     EncuestasComponent,
-    NuevaEncuestaComponent
+    NuevaEncuestaComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
