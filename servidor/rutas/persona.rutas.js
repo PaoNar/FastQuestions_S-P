@@ -23,10 +23,11 @@ api.get('/get_idpersona', autenticaControl.autentica, personaControl.getIdUsuari
 
 api.put("/update_persona", autenticaControl.autentica, personaControl.updateOneUsuario);
 
-api.delete("/delete_persona", personaControl.borrarAllUsuario);
-
+api.delete("/delete_persona",autenticaControl.autentica , personaControl.borrarAllUsuario);
 api.delete("/delete_idpersona", autenticaControl.autentica, personaControl.borrarOneUsuario);
 
+api.get('/getPersonId/:id', autenticaControl.autentica, personaControl.getPersonId)
+api.get('/getPersonEmail/:email', autenticaControl.autentica, personaControl.getPersonEmail)
 
 api.post('/nuevo_persona', [autenticaControl.autentica, passwordControl.codificarPassword], personaControl.nuevoUsuario);
 

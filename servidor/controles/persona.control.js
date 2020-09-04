@@ -173,6 +173,76 @@ let borrarAllUsuario = (req, res) =>{
 
 
 
+let getPersonId = (req, res) => {
+  let id = req.params.id
+  // let person = await Person.findById({_id: id})
+  usuarios.findById({_id: id})
+    .then(data =>{
+      res.status(200).json({
+        transaccion: true,
+        data: data,
+        msg: 'listo',
+        token: req.token,
+      })
+    }).catch( err =>{
+      res.status(500).json({
+        transaccion: false,
+        data: null,
+        msg: err
+    })
+  })
+
+
+
+  // if (person) {
+  //     res.status(200).json({
+  //         ok: true,
+  //         person
+  //     })
+  // } else if (usuarios.length === 0) {
+  //     res.send('El usaurio no está registrado en el sistema')
+  // } else {
+  //     res.status(500).json({
+  //         ok: false,
+  //         data: null
+  //     })
+  // }
+}
+
+let getPersonEmail = (req, res) => {
+  let email = req.params.email
+  usuarios.findOne({email: email})
+  .then(data =>{
+    res.status(200).json({
+      transaccion: true,
+      data: data,
+      msg: 'listo',
+      token: req.token,
+    })
+  }).catch( err =>{
+    res.status(500).json({
+      transaccion: false,
+      data: null,
+      msg: err
+  })
+})
+  // let person = await usuarios.findOne({email: email})
+  // if (person) {
+  //     res.status(200).json({
+  //         ok: true,
+  //         person
+  //     })
+  // } else {
+  //     res.status(200).json({
+  //         ok: false,
+  //         data: null,
+  //         sms: 'Correo no registrado en el sistema'
+  //     })
+  // }
+}
+
+
+
 let nuevoUsuario = async(req, res) =>{
   let usuario = req.body.data
 
@@ -254,5 +324,7 @@ module.exports = {
   borrarOneUsuario,
   borrarAllUsuario,
   login,
-  nuevoUsuario
+  nuevoUsuario,
+  getPersonId,
+  getPersonEmail
 }

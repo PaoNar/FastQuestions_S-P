@@ -11,7 +11,6 @@ const express = require('express'),
 //designamos a un archivo donde van estar las rutas para poder utilizar el servidor
 let app = express(),
     session = require('express-session'),
-    usuarioRuta = require('../rutas/usuarios.rutas'),
     fileRuta = require('../rutas/files.rutas'),
     personaRuta = require('../rutas/persona.rutas'),
     encuestasRuta = require('../rutas/encuestas.rutas'),
@@ -75,7 +74,6 @@ app.use(function (req, res, next) {
 
 
 //base de nuestro servidor
-//app.use('/api', usuarioRuta)
 app.use('/api', fileRuta)
 app.use('/api', personaRuta)
 app.use('/api', encuestasRuta)

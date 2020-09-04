@@ -17,7 +17,11 @@ const personaModel = Schema({
   passw: { type: String },
   // createAt: { type: String },
   lastActiveAt: { type: Date},
-  sessionID: { type: String }
+  sessionID: { type: String },
+  rol: {
+    type: String,
+    enum: ['Administrador', 'Encuestador']
+},
 });
 
 module.exports = mongoose.model("usuarios", personaModel);

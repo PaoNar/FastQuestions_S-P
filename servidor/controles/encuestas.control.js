@@ -26,62 +26,7 @@ const fs = require("fs"),
         msg: err,
       });
     });
-    // let data = await encuestas.find()
-    // if(data) {
-    //   res.status(200).json({
-    //     transaccion: true,
-    //     data,
-    //     msg:'listo',
-    //     token: req.token,
-    //   })
-    // } else {
-    //   res.status(500).json({
-    //     transaccion: false,
-    //     data: null,
-    //     msg: err
-    // })
-    // }
   }
-
-  //inserta un usuario
-//   let oneUsuario =  (req, res) =>{
-//     nombre = req.body.nombre
-//     apellido = req.body.apellido
-//     encuestas.create({nombre, apellido})
-//       .then(data =>{
-//         res.status(200).json({
-//           transaccion: true,
-//           data: data,
-//           msg: 'listo'
-//         })
-//       }).catch( err =>{
-//         res.status(500).json({
-//           transaccion: false,
-//           data: null,
-//           msg: err
-//       })
-//   })
-// }
-  
-
- //insertar varios encuestas
-//  let allencuestas = (req, res) =>{
-//     data = req.body.data
-//     encuestas.insertMany(data)
-//       .then(data =>{
-//         res.status(200).json({
-//           transaccion: true,
-//           data: data,
-//           msg: 'listo'
-//         })
-//       }).catch( err =>{
-//         res.status(500).json({
-//           transaccion: false,
-//           data: null,
-//           msg: err
-//       })
-//   })
-// }
 
 
 //Actualizar un usuario 

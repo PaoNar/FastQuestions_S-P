@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { WebServiceService } from './web-service.service';
 import { PermisosService } from './permisos.service';
 import { DataRx } from '../modelos/data-rx';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CrudService {
   private url: string;
+  email: string;
 
   constructor(
     private http: HttpClient,
@@ -16,6 +18,15 @@ export class CrudService {
     private permissions: PermisosService
   ) {
     this.url = this.server.obtenerUrl();
+  }
+
+  login(dataLogin: { Usuario: { password: any; email: any; }; }): Observable<DataRx> {
+    this.email = dataLogin.Usuario.email
+    return this.http.post<DataRx>(`${this.url}/login`, dataLogin);
+  }
+
+  getpersonaEmail(email: string) {
+    return this.http.get(`${this.url}/getPersonEmail/${email}`)
   }
 
   // getAllData(endPoint: string): Array<any> {

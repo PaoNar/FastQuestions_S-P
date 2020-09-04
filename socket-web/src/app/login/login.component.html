@@ -1,4 +1,6 @@
-<section
+
+
+<!-- <section
   class="flex items-center justify-center absolute w-full h-full bg-gray-900"
 >
   <div class="px-4">
@@ -33,9 +35,164 @@
       </button>
     </form>
   </div>
-</section>
+</section> -->
+
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" />
+
+<div class="h-screen bg-gray-900 font-nunito">
+  <div id="app">
+    <nav class="bg-gray-800 shadow-sm">
+      <div
+        class="container flex justify-between items-center mx-auto px-6 py-4"
+      >
+        <div>
+          <a href="http://localhost:8000" class="text-xl text-white"
+            >Logo instituto</a
+          >
+        </div>
+     
+        <button
+          type="button"
+          class="btn btn-info btn-lg"
+          data-toggle="modal"
+          id="myBt"
+        >
+          logo
+
+          <!-- falta registro de encuestador -->
+        </button>
+      </div>
+    </nav>
+
+    <main>
+      <div class="flex items-center justify-center mt-16 mx-6">
+        <div class="p-6 max-w-sm w-full bg-gray-800 shadow">
+          <h3 class="text-white text-xl text-center">Login</h3>
+
+          <form
+            [formGroup]="loginForm"
+            class="mt-4"
+            method="POST"
+            action="http://localhost:8000/login"
+          >
+            <label class="block">
+              <span class="text-white text-sm">Email</span>
+              <input
+                formControlName="email"
+                type="email"
+                class="form-input mt-1 block w-full h-6 p-4 bg-white text-black"
+                required
+                autocomplete="email"
+                autofocus
+              />
+            </label>
+
+            <label class="block mt-3">
+              <span class="text-white text-sm">Confirmar clave</span>
+              <input
+                formControlName="password"
+                type="password"
+                class="form-input mt-1 block w-full h-6 p-4 bg-white text-black"
+                required
+                autocomplete="current-password"
+              />
+            </label>
+
+            <div class="mt-6">
+              <button
+                (click)="login()"
+                type="submit"
+                class="w-full py-2 px-4 text-center bg-blue-600 rounded-md text-white text-sm hover:bg-blue-400 focus:outline-none"
+              >
+                Login
+              </button>
+            </div>
+          </form>
+
+          <div class="mt-6">
+            <label class="w-full py-2 px-4 text-center  rounded-md  text-sm  "><a
+              onclick="document.getElementById('myModal').showModal()" id="btn"
+              class=" text-white outline">Nuevo Registro</a></label>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
 
 
 
+<!-- MODAL -->
+<dialog id="myModal" class="h-auto w-11/12 md:w-1/2 p-5 bg-gray-800 rounded-md">
+  <div class="flex flex-col w-full h-auto p-3">
+    
+    <main>
+      <div class="flex flex-col w-full h-auto p-3">
+        <div class="flex w-full h-auto items-center">
+          <div class="flex w-10/12 h-auto py-3 text-xl text-white md:text-2xl ml-5">
+            Porfavor Registrarse
+          </div>
+          <div onclick="document.getElementById('myModal').close();"
+               class="flex w-1/12 h-auto justify-center cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <form
+          [formGroup]="registroForm"
+            class="mt-4"
+            method="POST"
+            action="http://localhost:8000/login"
+          >
+            <label class="block">
+              <span class="text-white text-sm">Email</span>
+              <input
+                formControlName="email"
+                type="email"
+                class="form-input mt-1 block w-full h-6 p-4 bg-white text-black"
+                required
+                autocomplete="email"
+                autofocus
+              />
+            </label>
 
+            <label class="block mt-3">
+              <span class="text-white text-sm">clave</span>
+              <input
+                formControlName="passw"
+                type="password"
+                class="form-input mt-1 block w-full h-6 p-4 bg-white text-black"
+                required
+                autocomplete="current-password"
+              />
+            </label>
+            <label class="block mt-3">
+              <span class="text-white text-sm">clave</span>
+              <input
+              formControlName="verifypassw"
+              type="password"
+                class="form-input mt-1 block w-full h-6 p-4 bg-white text-black"
+                required
+                autocomplete="current-password"
+              />
+            </label>
 
+            <div class="mt-6">
+              <button
+              (click)="crearPersona()"
+                type="submit"
+                class="w-full py-2 px-4 text-center bg-blue-600 rounded-md text-white text-sm hover:bg-blue-400 focus:outline-none"
+              >
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+</dialog>

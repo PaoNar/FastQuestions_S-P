@@ -11,4 +11,5 @@ export class Usuario {
     passw?: string;
     // createdAt?: Date;
     lastActiveAt?: number = Date.now();
+    rol: string;
 }
