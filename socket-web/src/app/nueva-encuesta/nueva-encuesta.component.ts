@@ -212,9 +212,10 @@ export class NuevaEncuestaComponent implements OnInit {
 
       for (let j = 1; j <= parseInt(this.parametros[1]); j++) {
         let opcion = document.createElement('input');
+        
         opcion.id = Math.floor(Math.random() * Math.floor(100)).toString();
         opcion.type = 'text';
-        opcion.className = 'py-2 px-2 border-2 bg-gray-300';
+        opcion.className = 'py-2 px-2 border-2 bg-gray-200';
 
         let title = document.createElement('span');
         let text = document.createTextNode('Opcion' + ' ' + j);
