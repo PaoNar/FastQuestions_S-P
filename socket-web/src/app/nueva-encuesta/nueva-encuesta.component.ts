@@ -167,7 +167,7 @@ export class NuevaEncuestaComponent implements OnInit {
   cargarParametros() {
     Swal.mixin({
       input: 'number',
-      confirmButtonText: 'Next &rarr;',
+      confirmButtonText: 'Siguiente &rarr;',
       showCancelButton: true,
       progressSteps: ['1', '2'],
     })

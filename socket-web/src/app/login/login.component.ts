@@ -78,8 +78,13 @@ export class LoginComponent implements  OnInit{
         if (res.transaccion) {
           if (this.permisos.decodificarToken(res.token)) {
             // this.router.navigate(['/encuestador']);
-            this.router.navigate(['/tabla-persona']);
             console.log(this.permisos.ObtenerUsuarioLogin());
+            let userData: any = this.permisos.ObtenerUsuarioLogin()
+            if(userData.rol === "administrador") {
+              this.router.navigate(['/tabla-persona']);
+            } else {
+              this.router.navigate(['/encuestador']);
+            }
             Swal.fire({
               position: 'top-end',
               icon: 'success',

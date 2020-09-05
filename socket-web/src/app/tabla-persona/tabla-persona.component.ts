@@ -5,7 +5,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { WebServiceService } from '../servicios/web-service.service';
 import { HttpClient } from '@angular/common/http';
 import { Chart} from 'chart.js'
-
+import { PermisosService } from '../servicios/permisos.service';
 
 @Component({
   selector: 'app-tabla-persona',
@@ -16,11 +16,13 @@ export class TablaPersonaComponent implements  OnInit {
   user=[];
   chart = [];
   doughnut =[];
+  userRol: any
 
   private url:string;
-  constructor( private servidor: WebServiceService,
+  constructor( private servidor: WebServiceService, private permisos: PermisosService,
       private http:HttpClient) { 
       this.url=servidor.obtenerUrl();
+      this.userRol = this.permisos.obtenerUserRol()
     }
   
   ngOnInit() {

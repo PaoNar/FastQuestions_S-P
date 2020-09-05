@@ -12,33 +12,52 @@
             <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
                 <p class="text-center text-3xl">Registro</p>
                 <form 
-                [formGroup]="registroForm" 
-                class="mt-4" method="POST"
-                action="http://localhost:8000/login"
-                class="flex flex-col pt-3 md:pt-8">
+                [formGroup]="personaForm" 
+                class="mt-4 flex flex-col pt-3 md:pt-8">
                     <div class="flex flex-col pt-4">
                         <label for="name" class="text-lg">Nombre</label>
-                        <input type="text" id="name" placeholder="John Smith"
+                        <input 
+                        formControlName="nombre"
+                        type="text" id="nombre" placeholder="John "
+
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="flex flex-col pt-4">
+                        <label for="name" class="text-lg">Apellido</label>
+                        <input 
+                        formControlName="apellido"
+                        type="text" id="apellido" placeholder="Smith"
+
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="flex flex-col pt-4">
+                        <label for="name" class="text-lg">Genero</label>
+                        <input 
+                        formControlName="genero"
+                        type="text" id="genero" 
+
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
 
                     <div class="flex flex-col pt-4">
                         <label for="email" class="text-lg">Correo Electrónico</label>
                         <input 
+                        formControlName="email"
+
                         type="email" 
                         id="email" 
                         placeholder="sucorreo@email.com"
-                        formControlName="email"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
 
                     <div class="flex flex-col pt-4">
                         <label for="password" class="text-lg">Contraseña</label>
                         <input 
+                        formControlName="passw"
+
                         type="password" 
                         id="password" 
                         placeholder="Contraseña"
-                        formControlName="passw"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
 
@@ -52,16 +71,15 @@
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
 
-                    <input 
-                    type="submit" 
-                    value="Registrar"
-                    (click)="crearPersona()"
-                        class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+                    <button 
+                    (click)="registrarPersona()"
+                        class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">Registrar
+                        </button>
                 </form>
-                <div class="text-center pt-12 pb-12">
+                <!-- <div class="text-center pt-12 pb-12">
                     <p>Ya tienes una cuenta? <a routerLink="/login" class="underline font-semibold">Inicia Sesión
                             aquí</a></p>
-                </div>
+                </div> -->
             </div>
 
         </div>

@@ -15,6 +15,7 @@ export class PermisosService {
   private token: string;
   private usuarioLogin: Usuario;
   private sessionID: string;
+  private userRol: string;
   constructor() {
     this.token = null;
     this.usuarioLogin = null;
@@ -28,6 +29,7 @@ export class PermisosService {
       this.token = token || null;
       this.usuarioLogin = decoded.data || null;
       this.sessionID = this.usuarioLogin.sessionId || null;
+      this.userRol = this.usuarioLogin.rol || null;
       delete this.usuarioLogin.sessionId;
       delete this.usuarioLogin.passw; //borramos el psw si esque llega
       return true;
@@ -52,6 +54,10 @@ export class PermisosService {
 
   obtenerSessionLogin(): string{
     return this.sessionID;
+  }
+
+  obtenerUserRol(): string{
+    return this.userRol;
   }
 
 }

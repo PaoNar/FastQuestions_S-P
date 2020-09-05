@@ -276,28 +276,31 @@ let login = (req, res) => {
 
       usuarios.find({ email }).then((data) => {
       //console.log(data + "mongo")
-      //if (data[0].email === email) {
-              let tokenBody = {
-                      email: data[0].email,
-                      sessionID: data[0].sessionID,
-                  },
-                  token = jwt.sign({ data: tokenBody }, process.env.KEY_JWT, {
-                      algorithm: "HS256",
-                      expiresIn: 120,
-                  });
-                  
-              bcrypt.compareSync(password, data[0].passw) ?
-                  res.status(200).json({
-                    transaccion: true,
-                    data,
-                    msg: "usuario encontrado",
-                    token,
-                  }) :
-                  res.status(404).json({
-                      transaccion: false,
-                      data: null,
-                      msg: "Password incorrecto",
-                  });
+      //if (data[0].email === email) {       
+        if(bcrypt.compareSync(password, data[0].passw)) {
+          let tokenBody = {
+            email: data[0].email,
+            sessionID: data[0].sessionID,
+            rol: data[0].rol
+        },
+        token = jwt.sign({ data: tokenBody }, process.env.KEY_JWT, {
+            algorithm: "HS256",
+            expiresIn: 120,
+        });
+
+            res.status(200).json({
+              transaccion: true,
+              data,
+              msg: "usuario encontrado",
+              token,
+            })
+        } else {
+          res.status(404).json({
+            transaccion: false,
+            data: null,
+            msg: "Password incorrecto",
+        });
+        }
          // } else {
           //    return res.status(404)
           //}

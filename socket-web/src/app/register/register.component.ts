@@ -1,12 +1,13 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { PermisosService } from '../servicios/permisos.service';
+import { CrudService } from '../servicios/crud.service';
+
 import { DataRx } from '../modelos/data-rx';
 import { HttpHeaders} from '@angular/common/http';
 import { LoginService} from '../servicios/login.service';
 import { Router} from '@angular/router';
 import { FormBuilder, FormGroup, Validators, PatternValidator } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { CrudService } from '../servicios/crud.service';
 
 @Component({
   selector: 'app-register',
@@ -14,20 +15,20 @@ import { CrudService } from '../servicios/crud.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  registroForm: FormGroup;
+  personaForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
-    
-    private loginService: LoginService,
-    private permisos: PermisosService,
+    private crudService: CrudService,
     private router: Router,
-    private crudService: CrudService
 
   ) { }
 
   ngOnInit(): void {
-    this.registroForm = this.formBuilder.group({
+    this.personaForm = this.formBuilder.group({
+      nombre: ['', [Validators.required]],
+      apellido: ['', [Validators.required]],
+      genero: ['', [Validators.required]],
       email: ['', [Validators.required]],
       passw: ['', [Validators.required]],
       verifypassw: ['', [Validators.required]],
@@ -35,11 +36,15 @@ export class RegisterComponent implements OnInit {
   }
  // nuevo registro
 
- crearPersona(){
-  let email = this.registroForm.get('email').value;
-  let passw = this.registroForm.get('passw').value;
-  let verifypassw = this.registroForm.get('verifypassw').value;
-  if (this.registroForm.valid) {
+ registrarPersona(){
+  let nombre = this.personaForm.get('nombre').value;
+  let apellido = this.personaForm.get('apellido').value;
+  let genero = this.personaForm.get('genero').value;
+  let email = this.personaForm.get('email').value;
+  let passw = this.personaForm.get('passw').value;
+  let verifypassw = this.personaForm.get('verifypassw').value;
+  
+  if (this.personaForm.valid) {
     if (passw != verifypassw) {
       Swal.fire({
         position: 'center',
@@ -51,13 +56,19 @@ export class RegisterComponent implements OnInit {
     } else {
       let datos = {
         data: {
+          nombre,
+          apellido,
+          genero,
           email,
           passw,
+          rol: "Encuestador"
         },
       };
+      
       let user = this.crudService.postData(datos,'nuevo_persona');
       if (user) {
-          this.router.navigate(['/encuestador']);
+        console.log(datos)
+          // this.router.navigate(['/login']);
       }
     }
   } else {

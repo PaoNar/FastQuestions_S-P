@@ -3,8 +3,6 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const personaModel = Schema({
-  id: { type: Number },
-  titulo: { type: String },
   nombre: { type: String },
   apellido: { type: String },
   genero: { type: String },
@@ -19,8 +17,9 @@ const personaModel = Schema({
   lastActiveAt: { type: Date},
   sessionID: { type: String },
   rol: {
+    default: 'Encuestador',
     type: String,
-    enum: ['Administrador', 'Encuestador']
+    // enum: ['Administrador', 'Encuestador']
 },
 });
 

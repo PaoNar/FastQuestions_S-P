@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { CrudService } from '../servicios/crud.service';
+// import { CrudService } from '../servicios/crud.service';
 
 @Component({
   selector: 'app-menu-encuestador',
@@ -20,22 +20,22 @@ export class MenuEncuestadorComponent {
     email: string;
     dataUser: any = [];
 
-  constructor(private breakpointObserver: BreakpointObserver, private CrudService: CrudService) {
+  constructor(private breakpointObserver: BreakpointObserver) {
      
-    this.email = CrudService.email;
+    // this.email = CrudService.email;
   }
 
   ngOnInit(): void {
-    this.getPersonEmail()
+    // this.getPersonEmail()
 
    }
 
-  getPersonEmail() {
-    return this.CrudService.getpersonaEmail(this.email).subscribe(
-      res => {
-        this.dataUser = res
-      },
-      err => console.error(err)
-    )
-  }
+  // getPersonEmail() {
+  //   return this.CrudService.getpersonaEmail(this.email).subscribe(
+  //     res => {
+  //       this.dataUser = res
+  //     },
+  //     err => console.error(err)
+  //   )
+  // }
 }

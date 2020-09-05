@@ -29,7 +29,7 @@ api.delete("/delete_idpersona", autenticaControl.autentica, personaControl.borra
 api.get('/getPersonId/:id', autenticaControl.autentica, personaControl.getPersonId)
 api.get('/getPersonEmail/:email', autenticaControl.autentica, personaControl.getPersonEmail)
 
-api.post('/nuevo_persona', [autenticaControl.autentica, passwordControl.codificarPassword], personaControl.nuevoUsuario);
+api.post('/nuevo_persona', [passwordControl.codificarPassword], personaControl.nuevoUsuario);
 
 //=>
 api.post('/login',  personaControl.login) 
