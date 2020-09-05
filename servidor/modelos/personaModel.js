@@ -18,9 +18,8 @@ const personaModel = Schema({
   sessionID: { type: String },
   rol: {
     default: 'Encuestador',
-    type: String,
-    // enum: ['Administrador', 'Encuestador']
-},
+    type: String
+  },
 });
 
 module.exports = mongoose.model("usuarios", personaModel);

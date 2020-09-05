@@ -26,42 +26,8 @@ const fs = require("fs"),
         msg: err,
       });
     });
-    // let data = await usuarios.find()
-    // if(data) {
-    //   res.status(200).json({
-    //     transaccion: true,
-    //     data,
-    //     msg:'listo',
-    //     token: req.token,
-    //   })
-    // } else {
-    //   res.status(500).json({
-    //     transaccion: false,
-    //     data: null,
-    //     msg: err
-    // })
-    // }
   }
 
-  //inserta un usuario
-//   let oneUsuario =  (req, res) =>{
-//     nombre = req.body.nombre
-//     apellido = req.body.apellido
-//     usuarios.create({nombre, apellido})
-//       .then(data =>{
-//         res.status(200).json({
-//           transaccion: true,
-//           data: data,
-//           msg: 'listo'
-//         })
-//       }).catch( err =>{
-//         res.status(500).json({
-//           transaccion: false,
-//           data: null,
-//           msg: err
-//       })
-//   })
-// }
   
 
  //insertar varios usuarios
@@ -173,74 +139,6 @@ let borrarAllUsuario = (req, res) =>{
 
 
 
-let getPersonId = (req, res) => {
-  let id = req.params.id
-  // let person = await Person.findById({_id: id})
-  usuarios.findById({_id: id})
-    .then(data =>{
-      res.status(200).json({
-        transaccion: true,
-        data: data,
-        msg: 'listo',
-        token: req.token,
-      })
-    }).catch( err =>{
-      res.status(500).json({
-        transaccion: false,
-        data: null,
-        msg: err
-    })
-  })
-
-
-
-  // if (person) {
-  //     res.status(200).json({
-  //         ok: true,
-  //         person
-  //     })
-  // } else if (usuarios.length === 0) {
-  //     res.send('El usaurio no está registrado en el sistema')
-  // } else {
-  //     res.status(500).json({
-  //         ok: false,
-  //         data: null
-  //     })
-  // }
-}
-
-let getPersonEmail = (req, res) => {
-  let email = req.params.email
-  usuarios.findOne({email: email})
-  .then(data =>{
-    res.status(200).json({
-      transaccion: true,
-      data: data,
-      msg: 'listo',
-      token: req.token,
-    })
-  }).catch( err =>{
-    res.status(500).json({
-      transaccion: false,
-      data: null,
-      msg: err
-  })
-})
-  // let person = await usuarios.findOne({email: email})
-  // if (person) {
-  //     res.status(200).json({
-  //         ok: true,
-  //         person
-  //     })
-  // } else {
-  //     res.status(200).json({
-  //         ok: false,
-  //         data: null,
-  //         sms: 'Correo no registrado en el sistema'
-  //     })
-  // }
-}
-
 
 
 let nuevoUsuario = async(req, res) =>{
@@ -301,9 +199,6 @@ let login = (req, res) => {
             msg: "Password incorrecto",
         });
         }
-         // } else {
-          //    return res.status(404)
-          //}
       })
       .catch((err) => {
           return res.status(404).json({
@@ -316,18 +211,13 @@ let login = (req, res) => {
 };
 
 
-
-
 module.exports = {
   getUsuarios,
-  //oneUsuario,
   //allUsuarios,
   updateOneUsuario,
   getIdUsuario,
   borrarOneUsuario,
   borrarAllUsuario,
   login,
-  nuevoUsuario,
-  getPersonId,
-  getPersonEmail
+  nuevoUsuario
 }

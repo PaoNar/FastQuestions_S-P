@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CrudService } from '../../servicios/crud.service';
-import { PermisosService } from '../../servicios/permisos.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
