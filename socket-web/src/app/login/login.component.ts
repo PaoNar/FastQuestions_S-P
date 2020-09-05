@@ -77,7 +77,7 @@ export class LoginComponent implements  OnInit{
       (res: DataRx) => {
         if (res.transaccion) {
           if (this.permisos.decodificarToken(res.token)) {
-            this.router.navigate(['/menu-encuestador']);
+            this.router.navigate(['/encuestador']);
             // this.router.navigate(['/tabla-persona']);
             console.log(this.permisos.ObtenerUsuarioLogin());
             Swal.fire({

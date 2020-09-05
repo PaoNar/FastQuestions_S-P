@@ -15,6 +15,8 @@ const routes: Routes = [
   {path: 'encuestas', loadChildren: () =>import('./encuestas/encuestas.module').then(m =>m.EncuestasModule)},
   {path: 'nueva-encuesta', loadChildren: () =>import('./nueva-encuesta/nueva-encuesta.module').then(m =>m.NuevaEncuestaModule)},
   {path: 'home', loadChildren: () =>import('./home/home.module').then(m =>m.HomeModule)},
+  {path: 'encuestas-admin', loadChildren: () =>import('./encuestas-admin/encuestas-admin.module').then(m =>m.EncuestasAdminModule)},
+
 
 
 
