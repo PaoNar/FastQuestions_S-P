@@ -5,9 +5,8 @@
           <h1>ENCUESTA</h1>
           <form [formGroup]="registerForm">
             <div>
+              <!-- *ngIf="registerForm.controls['titulo'].errors?.required" -->
               <span
-                *ngIf="registerForm.controls['mail'].errors?.required"
-                id="errors"
                 >Titulo de la encuesta
               </span>
               <input
@@ -15,16 +14,17 @@
                 id="tituloEncuesta"
                 name="titulo"
                 placeholder="Ej. Hot dog vs Papas fritas"
+                formControlName="titulo"
               />
               <br />
             </div>
             <div>
               <span
-                *ngIf="registerForm.controls['mail'].errors?.required"
-                id="errors"
                 >Encuestador
               </span>
               <input
+              formControlName="encuestador"
+
                 type="text"
                 id="titulo"
                 name="titulo"
@@ -34,11 +34,11 @@
             </div>
             <div>
               <span
-                *ngIf="registerForm.controls['mail'].errors?.required"
-                id="errors"
                 >Grupo a encuestar
               </span>
               <input
+              formControlName="grupoEncuestado"
+
                 type="text"
                 id="titulo"
                 name="titulo"

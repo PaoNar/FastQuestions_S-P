@@ -118,7 +118,7 @@ let borrarAllUsuario = (req, res) =>{
 
 
 
-let nuevoUsuario = async(req, res) =>{
+let nuevaEncuesta = async(req, res) =>{
   let usuario = req.body.data
 
   encuestas.create(usuario)
@@ -199,5 +199,5 @@ module.exports = {
   borrarOneUsuario,
   borrarAllUsuario,
   login,
-  nuevoUsuario
+  nuevaEncuesta
 }

@@ -15,7 +15,7 @@ let api = express.Router(),
 api.get('/get_encuestas', autenticaControl.autentica, encuestasControl.getEncuestas);
 api.get('/get_idencuestas', autenticaControl.autentica, encuestasControl.getIdEncuesta);
 
-//api.post("/insertar_encuestas", encuestasControl.allUsuarios);
+api.post("/nuevaEncuesta", autenticaControl.autentica, encuestasControl.nuevaEncuesta);
 //api.post("/one_encuestas", autenticaControl.autentica, encuestasControl.oneUsuario);
 
 // api.put("/update_encuestas", autenticaControl.autentica, encuestasControl.updateOneUsuario);

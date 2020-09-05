@@ -3,8 +3,6 @@ import {
   FormGroup,
   Validators,
   FormBuilder,
-  FormArray,
-  FormControl,
 } from '@angular/forms';
 import Swal from 'sweetalert2';
 
@@ -18,150 +16,22 @@ export class NuevaEncuestaComponent implements OnInit {
 
   //DECLARACIONES - BEGIN
   registerForm: FormGroup;
-  patternForm: FormGroup;
-  firstName: String;
-  secondName: String[];
-  lastnames: String;
-  mail: string;
-  phone: string;
-  operadora: String[];
-  message: String;
-  parametros: Array<any>;
+  parametros: any;
   //DECLARACIONES - FINISH
 
-  //CLASE
-  usuarioform: FormGroup;
-  telefonos: FormArray; //Declarar como FormArray
-  operadoraClases: String[];
-  //CLASE
-
   ngOnInit() {
+    this.createregisterForm();
     this.cargarParametros();
-    this.createregisterForm(), this.examplepatternForm();
-
-    //clase
-    this.crearUsuarioForm();
-    this.operadoraClases = ['Claro', 'CNT', 'Movistar', 'Tuenti'];
-    //clase
   }
-
-  //clase
-  crearUsuarioForm() {
-    this.usuarioform = this.fb.group({
-      nombre: ['', [Validators.required]],
-      cedula: ['', [Validators.required]],
-      telefonos: this.fb.array([this.creartelefonoform()]),
-    });
-  }
-
-  creartelefonoform(): FormGroup {
-    return this.fb.group({
-      operadora: ['999', [Validators.required]],
-      numero: ['', [Validators.required]],
-    });
-  }
-
-  addTelefonoForm() {
-    this.telefonos = this.usuarioform.get('telefonos') as FormArray;
-    this.telefonos.push(this.creartelefonoform()); //Añado un nuevo grupo de formularios
-  }
-
-  eliminarTelefonoForm(i) {
-    this.telefonos.removeAt(i);
-  }
-  //clase
 
   // FUNCIONES - INICIO
   createregisterForm() {
     this.registerForm = this.fb.group({
-      firstName: [
-        '',
-        [Validators.required, Validators.pattern('^[A-Z]+[a-z]*$')],
-      ],
-      secondName: this.fb.array([this.fb.group({ name2: [''] })]),
-      lastnames: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('^[A-Z]+[a-zñ]{2,} [A-Z]+[a-zñ]{2,}$'),
-        ],
-      ],
-      mail: [
-        '',
-        [
-          Validators.required,
-          Validators.email,
-          Validators.pattern(
-            '^[a-z]+[a-zA-Z0-9._-ñ]*@[a-z]+[a-z0-9]*.[a-z]{2,3}[.]?[a-z]{2,3}$'
-          ),
-        ],
-      ],
-      phone: ['', [Validators.required, Validators.pattern('(09)+[0-9]{8}')]],
-      operadora: this.fb.array([
-        this.fb.group({
-          phone1: [
-            '',
-            [Validators.required, Validators.pattern('(09)+[0-9]{8}')],
-          ],
-          phone2: ['', [Validators.required]],
-        }),
-      ]),
+      titulo: ["", [Validators.required, Validators.pattern('^[A-Z]+[a-z]*$')]],
+      encuestador: ["", [Validators.required, Validators.pattern('^[A-Z]+[a-z]*$')]],
+      grupoEncuestado: ["", [Validators.required, Validators.pattern('^[A-Z]+[a-z]*$')]],
     });
   }
-
-  examplepatternForm() {
-    this.patternForm = this.fb.group({
-      example1: [
-        '',
-        [
-          Validators.pattern(
-            '^[a-z-_A-Z0-9ñ]+[a-zA-Z0-9._-ñ]*@[a-z]+[a-z0-9]*.[a-z]{2,3}[.](?:[a-z]{2,3})$'
-          ),
-        ],
-      ],
-      example2: [
-        '',
-        [Validators.pattern('(?=w*d)(?=w*[A-Z])(?=w*[a-z])S{4,16}')],
-      ],
-    });
-  }
-
-  get getPhones() {
-    return this.registerForm.get('operadora') as FormArray;
-  }
-
-  get getSecondName() {
-    return this.registerForm.get('secondName') as FormArray;
-  }
-
-  addPhones() {
-    const celular = <FormArray>this.registerForm.controls['operadora'];
-    celular.push(this.fb.group({ phone2: [] }));
-  }
-
-  addSecondName() {
-    const addName = <FormArray>this.registerForm.controls['secondName'];
-    addName.push(this.fb.group({ name2: [] }));
-  }
-
-  deletePhones(value) {
-    const celular = <FormArray>this.registerForm.controls['operadora'];
-    celular.removeAt(value);
-  }
-
-  deleteSecondName(value) {
-    const removeName = <FormArray>this.registerForm.controls['secondName'];
-    removeName.removeAt(value);
-  }
-
-  submit() {
-    if (this.registerForm.invalid) {
-      alert(`Complete todos los campos correctamente`);
-    } else {
-      alert(`Se ha registrado exitosamente`);
-    }
-  }
-
   //FUNCIONES - FIN
 
   cargarParametros() {
@@ -185,12 +55,13 @@ export class NuevaEncuestaComponent implements OnInit {
   }
 
   dibujarEncuesta() {
-    let ubicacionEncuesta = document.querySelector('.setEncuesta');
+    let ubicacionEncuesta = document.querySelector('.setEncuesta'),
+    contador: number = 0
 
     // dibujar preguntas
     for (let i = 1; i <= parseInt(this.parametros[0]); i++) {
       let pregunta = document.createElement('div');
-      pregunta.id = 'pregunta' + i;
+      // pregunta.id = 'pregunta' + i;
       pregunta.className = 'py-3 px-3 border-2';
 
       let title = document.createElement('span');
@@ -200,7 +71,7 @@ export class NuevaEncuestaComponent implements OnInit {
       let inputPregunta = document.createElement('input');
       inputPregunta.id = 'pregunta' + i;
       inputPregunta.type = 'text';
-      inputPregunta.className = 'py-2 px-2 border-2 w-64 bg-gray-300';
+      inputPregunta.className = 'test py-2 px-2 border-2 w-64 bg-gray-300';
       inputPregunta.setAttribute('placeholder', 'Ingrese su pregunta aquí');
 
       pregunta.appendChild(title);
@@ -213,9 +84,11 @@ export class NuevaEncuestaComponent implements OnInit {
       for (let j = 1; j <= parseInt(this.parametros[1]); j++) {
         let opcion = document.createElement('input');
         
-        opcion.id = Math.floor(Math.random() * Math.floor(100)).toString();
+        opcion.id = (contador + 1).toString()
         opcion.type = 'text';
         opcion.className = 'py-2 px-2 border-2 bg-gray-200';
+
+        contador = parseInt(opcion.id)
 
         let title = document.createElement('span');
         let text = document.createTextNode('Opcion' + ' ' + j);
@@ -233,12 +106,31 @@ export class NuevaEncuestaComponent implements OnInit {
 
   saveForm() {
     let formulario = {
-      tituloEncuesta: '',
-      encuestador: '',
-      grupoEncuesta: '',
-    };
+      data: {
+        titulo: this.registerForm.get("titulo").value,
+        encuestador: this.registerForm.get("encuestador").value,
+        grupoEncuestado: this.registerForm.get("grupoEncuestado").value,
+        contenido: []
+      }
+    },
+    pregunta: Array<any> = [],
+    opciones: Array<any> = []
 
-    let preguntas = document.getElementsByName('pregunta1');
-    console.log(preguntas);
+    for (let i = 1; i <= parseInt(this.parametros[0]); i++) {
+      let preguntasValue = (<HTMLInputElement>document.getElementById("pregunta"+i)).value;
+
+      for(let j = 1; j <= parseInt(this.parametros[1]); j++) {
+        var opcionValue = (<HTMLInputElement>document.getElementById(j.toString())).value;
+
+        opciones.push([opcionValue]) 
+      }
+
+      pregunta.push({
+        pregunta: preguntasValue,
+        opciones: opciones
+      })
+    }
+    console.log(pregunta)
+    // console.log(opciones)
   }
 }
