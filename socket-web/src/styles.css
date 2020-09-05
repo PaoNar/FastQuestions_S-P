@@ -11857,6 +11857,10 @@ video {
 .w-64 {
   width: 16rem;
 }
+.w-77 {
+  width: 1200px;
+}
+
 
 .w-auto {
   width: auto;
