@@ -14,6 +14,7 @@ let app = express(),
     fileRuta = require('../rutas/files.rutas'),
     personaRuta = require('../rutas/persona.rutas'),
     encuestasRuta = require('../rutas/encuestas.rutas'),
+    correoRuta = require('../rutas/correo.rutas'),
 
     db = connectDb(),
 
@@ -77,6 +78,7 @@ app.use(function (req, res, next) {
 app.use('/api', fileRuta)
 app.use('/api', personaRuta)
 app.use('/api', encuestasRuta)
+app.use('/api', correoRuta)
 
 
 

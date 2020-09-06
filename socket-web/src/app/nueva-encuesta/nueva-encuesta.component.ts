@@ -3,8 +3,13 @@ import {
   FormGroup,
   Validators,
   FormBuilder,
+  FormArray,
+  FormControl,
 } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { CrudService } from '../servicios/crud.service';
+import { WebServiceService } from '../servicios/web-service.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-nueva-encuesta',
@@ -12,14 +17,23 @@ import Swal from 'sweetalert2';
   styleUrls: ['./nueva-encuesta.component.scss'],
 })
 export class NuevaEncuestaComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+  private url:string;
+
+  constructor(private fb: FormBuilder, private crudService: CrudService, private servidor: WebServiceService, private http: HttpClient) {
+    this.url=servidor.obtenerUrl();
+
+   }
 
   //DECLARACIONES - BEGIN
   registerForm: FormGroup;
   parametros: any;
+  numeroOpciones: Number;
+  user = [];
   //DECLARACIONES - FINISH
 
   ngOnInit() {
+    this.getPersonas();
+
     this.createregisterForm();
     this.cargarParametros();
   }
@@ -30,6 +44,7 @@ export class NuevaEncuestaComponent implements OnInit {
       titulo: ["", [Validators.required, Validators.pattern('^[A-Z]+[a-z]*$')]],
       encuestador: ["", [Validators.required, Validators.pattern('^[A-Z]+[a-z]*$')]],
       grupoEncuestado: ["", [Validators.required, Validators.pattern('^[A-Z]+[a-z]*$')]],
+      encuestados: this.fb.array([]),
     });
   }
   //FUNCIONES - FIN
@@ -56,7 +71,7 @@ export class NuevaEncuestaComponent implements OnInit {
 
   dibujarEncuesta() {
     let ubicacionEncuesta = document.querySelector('.setEncuesta'),
-    contador: number = 0
+      contador: number = 0
 
     // dibujar preguntas
     for (let i = 1; i <= parseInt(this.parametros[0]); i++) {
@@ -83,12 +98,13 @@ export class NuevaEncuestaComponent implements OnInit {
 
       for (let j = 1; j <= parseInt(this.parametros[1]); j++) {
         let opcion = document.createElement('input');
-        
+
         opcion.id = (contador + 1).toString()
         opcion.type = 'text';
         opcion.className = 'py-2 px-2 border-2 bg-gray-200';
 
         contador = parseInt(opcion.id)
+        this.numeroOpciones = contador
 
         let title = document.createElement('span');
         let text = document.createTextNode('Opcion' + ' ' + j);
@@ -110,19 +126,32 @@ export class NuevaEncuestaComponent implements OnInit {
         titulo: this.registerForm.get("titulo").value,
         encuestador: this.registerForm.get("encuestador").value,
         grupoEncuestado: this.registerForm.get("grupoEncuestado").value,
-        contenido: []
+        contenido: [],
+        encuestados: this.registerForm.get("encuestados").value
       }
     },
-    pregunta: Array<any> = [],
-    opciones: Array<any> = []
+      pregunta: Array<any> = [],
+      temp: Array<any> = [],
+      opciones: Array<any> = []
+
+    for (let i = 1; i <= this.numeroOpciones; i++) {
+      let opcionValue = (<HTMLInputElement>document.getElementById(i.toString())).value;
+
+      temp.push(opcionValue)
+      // if (opciones.length + 1 <= parseInt(this.parametros[1])) {
+      // } 
+      // else if (opciones.length + 1 <=  this.numeroOpciones) {
+      //   opciones.push(opcionValue) 
+      // }
+    }
 
     for (let i = 1; i <= parseInt(this.parametros[0]); i++) {
-      let preguntasValue = (<HTMLInputElement>document.getElementById("pregunta"+i)).value;
+      let preguntasValue = (<HTMLInputElement>document.getElementById("pregunta" + i)).value;
 
-      for(let j = 1; j <= parseInt(this.parametros[1]); j++) {
-        var opcionValue = (<HTMLInputElement>document.getElementById(j.toString())).value;
+      for (let j = 0; j <= temp.length - 1; j++) {
+        // console.log(temp[j])
 
-        opciones.push([opcionValue]) 
+        // opciones.push(temp[j])
       }
 
       pregunta.push({
@@ -130,7 +159,56 @@ export class NuevaEncuestaComponent implements OnInit {
         opciones: opciones
       })
     }
-    console.log(pregunta)
+
+    // let checkboxes = document.getElementsByClassName("users")
+
+
+    // console.log(pregunta)
     // console.log(opciones)
+
+    formulario.data.contenido = pregunta
+
+    console.log(formulario)
+
+    // let encuestaGuardada = this.crudService.postData(formulario, 'nuevaEncuesta');
+    //   if (!encuestaGuardada) {
+    //     console.log(encuestaGuardada)
+    //     //this.router.navigate(['/login']);
+    // } else {
+    //   Swal.fire({
+    //     position: 'center',
+    //     icon: 'error',
+    //     title: 'no se enviaron los datos',
+    //     showConfirmButton: false,
+    //     timer: 2000,
+    //   });
+    // }
+  }
+
+  onChange(id: string, isChecked: boolean) {
+    const encuestadosFormArray = <FormArray>this.registerForm.controls.encuestados;
+  
+    if(isChecked) {
+      encuestadosFormArray.push(new FormControl(id));
+      console.log("se agrego usuario")
+    } else {
+      let index = encuestadosFormArray.controls.findIndex(x => x.value == id)
+      encuestadosFormArray.removeAt(index);
+      console.log("se elimino usuario")
+    }
+  }
+
+// applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  // }
+  getPersonas(): void {
+    this.http
+      .get(`${this.url}get_persona`, this.servidor.obtenerHeaders())
+      .subscribe((data: any) => {
+        data.data.forEach((element) => {
+          this.user.push(element);
+        });
+      });
   }
 }
