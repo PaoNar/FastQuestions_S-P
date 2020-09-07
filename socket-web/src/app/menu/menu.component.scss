@@ -21,9 +21,15 @@
 
 .sidenav{
   width: 230px;
-  box-shadow: 3px 0 6px rgba(0,0,0,.24);
+  box-shadow: 3px 0 6px rgba(37, 37, 37, 0.24);
+  a:hover{
+    --bg-opacity: 1;
+    background-color: #2a4365;
+    background-color: rgba(42, 67, 101, var(--bg-opacity));
+    
+  }
   a{
-    text-align: center;
+    color: rgb(181, 181, 181);
   }
 }
 
@@ -31,7 +37,9 @@
   flex: 1 1 auto;
 }
 .mat{
+  text-align: center;
   margin-top: 70px;
+  color: white;
 }
 
 img{

@@ -6,7 +6,7 @@
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false">
-    <img src="../../assets/img/yavirac.png" alt="">
+    <img src="../../assets/img/descarga.jfif" alt="">
     <mat-toolbar class="mat">Menu</mat-toolbar>
     <mat-nav-list> 
       <!-- *ngIf="dataUser.Usuario.rol == 'Administrador'" -->
@@ -16,7 +16,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="" style="border-bottom: 5px solid rgb(187, 79, 6)">
       <button
         type="button"
         aria-label="Toggle sidenav"

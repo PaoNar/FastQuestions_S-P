@@ -1,9 +1,156 @@
 <app-menu-encuestador>
-  <body
-    class="antialiased font-sans bg-gray-200"
+  <body class="antialiased font-sans w-screem">
     
-  >
-    <div class="container mx-auto px-4 sm:px-8">
+    <div class="flex flex-row flex-wrap flex-1 flex-grow content-start  px-4 w-screen">
+
+      <div class="h-40 lg:h-20 w-full flex flex-wrap">
+      
+     
+      </div>
+
+      <!--Dash Content -->
+      <div id="dash-content" class="bg-gray-700  lg:py-0  w-screem lg:max-w-sm flex flex-wrap content-start w-full ">
+          <div class="w-full lg:w-full">
+              <div class=" bg-white  hover:border-transparent hover:bg-white hover:shadow-xl w-screem rounded p-6 m-2 md:mx-10 md:my-6">
+                  <div class="flex flex-col items-center">
+                      <div class="flex-shrink pr-4">
+                          <div class="rounded-full p-3 bg-gray-300"><i class="fas fa-users fa-fw fa-inverse text-indigo-500"></i></div>
+                      </div>
+                      <div class="flex-1">
+                          <h3 class="font-bold text-3xl">10 <span class="text-orange-500"><i class="fas fa-exchange-alt"></i></span></h3>
+                          <h5 class="font-bold text-gray-500">Total Usuarios</h5>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="w-1/2 lg:w-full">
+              <div class="bg-white hover:border-transparent hover:bg-white hover:shadow-xl rounded p-6 m-2 md:mx-10 md:my-6">
+                  <div class="flex flex-col items-center">
+                      <div class="flex-shrink pr-4">
+                          <div class="rounded-full p-3 bg-gray-300"><i class="fas fa-user-plus fa-fw fa-inverse text-indigo-500"></i></div>
+                      </div>
+                      <div class="flex-1">
+                          <h3 class="font-bold text-3xl">2 <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></h3>
+                          <h5 class="font-bold text-gray-500">Nuevos usuarios</h5>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="w-1/2 lg:w-full">
+              <div class="bg-white hover:border-transparent hover:bg-white hover:shadow-xl rounded p-6 m-2 md:mx-10 md:my-6">
+                  <div class="flex flex-col items-center">
+                      <div class="flex-shrink pr-4">
+                          <div class="rounded-full p-3 bg-gray-300"><i class="fas fa-server fa-fw fa-inverse text-indigo-500"></i></div>
+                      </div>
+                      <div class="flex-1">
+                          <h3 class="font-bold text-3xl">15 Días</h3>
+                          <h5 class="font-bold text-gray-500">Tiempo de servicio</h5>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="w-1/2 lg:w-full">
+            <div class="bg-white hover:border-transparent hover:bg-white hover:shadow-xl rounded p-6 m-2 md:mx-10 md:my-6">
+                <div class="flex flex-col items-center">
+                    <div class="flex-shrink pr-4">
+                        <div class="rounded-full p-3 bg-gray-300"><i class="fas fa-server fa-fw fa-inverse text-indigo-500"></i></div>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-3xl"> Tiempo</h3>
+                        <h5 class="font-bold text-gray-500">Tiempo de servicio</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      </div>
+
+      <!--Graph Content -->
+      <div id="main-content" class="w-full flex-1 ">
+
+          <div class="flex flex-1 flex-wrap">
+
+              <div class="w-full xl:w-2/3 p-6 xl:max-w-6xl">
+
+                  <!--"Container" for the graphs"-->
+                  <div class="max-w-full lg:max-w-3xl xl:max-w-5xl">
+
+                      <!--Graph Card-->
+                      <div class="border-b p-3">
+                          <h5 class="font-bold text-black">Graph</h5>
+                      </div>
+                      <div class="p-5">
+                       
+                            <canvas id="canvas"></canvas>
+                         
+                      </div>
+                      <!--/Graph Card-->
+
+                       <!--Graph Card-->
+                       <div class="border-b p-3">
+                        <h5 class="font-bold text-black">Graph</h5>
+                    </div>
+                    <div class="p-5">
+                     
+                          <canvas id="doughnut"></canvas>
+                       
+                    </div>
+                    <!--/Graph Card-->
+                      <!--Table Card-->
+                      <!-- <div class="p-3">
+                          <div class="border-b p-3">
+                              <h5 class="font-bold text-black">Table</h5>
+                          </div>
+                          <div class="p-5">
+                              <table class="w-full p-5 text-gray-700">
+                                  <thead>
+                                      <tr>
+                                          <th class="text-left text-blue-900"></th>
+                                          <th class="text-left text-blue-900">Side</th>
+                                          <th class="text-left text-blue-900">Role</th>
+                                      </tr>
+                                  </thead>
+
+                                  <tbody>
+                                      <tr>
+                                          <td>Obi Wan Kenobi</td>
+                                          <td>Light</td>
+                                          <td>Jedi</td>
+                                      </tr>
+                                      <tr>
+                                          <td>Greedo</td>
+                                          <td>South</td>
+                                          <td>Scumbag</td>
+                                      </tr>
+                                      <tr>
+                                          <td>Darth Vader</td>
+                                          <td>Dark</td>
+                                          <td>Sith</td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+
+                              <p class="py-2"><a href="#">See More issues...</a></p>
+
+                          </div>
+                      </div> -->
+                      <!--/table Card-->
+
+                  </div>
+
+              </div>
+
+            
+
+          </div>
+
+      </div>
+
+  </div>
+    <!-- Charts -->
+    <!-- <div class="container mx-auto px-4 sm:px-8">
       <div class="row">
         <div class="column">
           <div class="graficos" style="width: 100%">
@@ -16,6 +163,8 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
+    <!-- Charts -->
+
   </body>
 </app-menu-encuestador>

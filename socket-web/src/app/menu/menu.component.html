@@ -1,13 +1,13 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav 
       #drawer 
-      class="sidenav" 
+      class="sidenav flex h-screen bg-gray-800 font-roboto" 
       fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-      <img src="../../assets/img/yavirac.png" alt="">
-    <mat-toolbar class="mat" >Menu</mat-toolbar>
+      <img class="bg-white" src="../../assets/img/yavi-removebg-preview.png" alt="">
+    <mat-toolbar class="mat" style="text-align: center;">Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="/tabla-persona" >Dashboard</a>
       <a mat-list-item  routerLink="/persona">Administrador</a>
@@ -17,7 +17,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary" >
+    <mat-toolbar color=""  style="border-bottom: 5px solid rgb(6, 78, 202)">
       <button
         type="button"
         aria-label="Toggle sidenav"

@@ -62,7 +62,7 @@ export class EncuestadorComponent implements OnInit {
             label: 'Dataset 1',
           },
         ],
-        labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
+        // labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
       },
     });
   }
