@@ -17,6 +17,7 @@ const routes: Routes = [
   {path: 'home', loadChildren: () =>import('./home/home.module').then(m =>m.HomeModule)},
   {path: 'encuestas-admin', loadChildren: () =>import('./encuestas-admin/encuestas-admin.module').then(m =>m.EncuestasAdminModule)},
   {path: 'registro', loadChildren: () =>import('./register/register.module').then(m =>m.RegisterModule)},
+  {path: 'vista-cliente', loadChildren: () =>import('./vista-cliente/vista-cliente.module').then(m =>m.VistaClienteModule)}
 
 
 

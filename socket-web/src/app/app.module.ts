@@ -30,6 +30,7 @@ import { NuevaEncuestaComponent } from './nueva-encuesta/nueva-encuesta.componen
 import { HomeComponent } from './home/home.component';
 import { EncuestasAdminComponent } from './encuestas-admin/encuestas-admin.component';
 import { RegisterComponent } from './register/register.component';
+import { VistaClienteComponent } from './vista-cliente/vista-cliente.component';
 //import { CrearDocComponent } from './crear-doc/crear-doc.component';
 
 //const config: SocketIoConfig = {url: 'http://localhost:3500', options: {} }; 
@@ -47,7 +48,8 @@ import { RegisterComponent } from './register/register.component';
     NuevaEncuestaComponent,
     HomeComponent,
     EncuestasAdminComponent,
-    RegisterComponent
+    RegisterComponent,
+    VistaClienteComponent
   ],
   imports: [
     BrowserModule,

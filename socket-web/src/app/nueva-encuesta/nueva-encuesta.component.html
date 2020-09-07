@@ -1,59 +1,55 @@
 <app-menu-encuestador>
-    <div id="login-section">
-        <!-- {{registerForm.value | json  }} -->
-        <div class="login-box">
-          <h1>ENCUESTA</h1>
-          <form [formGroup]="registerForm">
-            <div>
-              <!-- *ngIf="registerForm.controls['titulo'].errors?.required" -->
-              <span
-                >Titulo de la encuesta
-              </span>
-              <input
-                type="text"
-                id="tituloEncuesta"
-                name="titulo"
-                placeholder="Ej. Hot dog vs Papas fritas"
-                formControlName="titulo"
-              />
-              <br />
-            </div>
-            <div>
-              <span
-                >Encuestador
-              </span>
-              <input
-              formControlName="encuestador"
+  <div id="login-section">
+    <!-- {{registerForm.value | json  }} -->
+    <div class="login-box">
+      <h1>ENCUESTA</h1>
+      <form [formGroup]="registerForm">
+        <div>
+          <!-- *ngIf="registerForm.controls['titulo'].errors?.required" -->
+          <span>Titulo de la encuesta </span>
+          <input
+            type="text"
+            id="tituloEncuesta"
+            name="titulo"
+            placeholder="Ej. Hot dog vs Papas fritas"
+            formControlName="titulo"
+          />
+          <br />
+        </div>
+        <div>
+          <span>Encuestador </span>
+          <input
+            formControlName="encuestador"
+            type="text"
+            id="titulo"
+            name="titulo"
+            placeholder="ej. Sedric"
+          />
+          <!-- <select *ngFor="let user of encuestador" >
+            <option value="0"></option>
+            <option value="1"></option>
+            <option value="2"></option>
+          </select> -->
+          <br />
+        </div>
+        <div>
+          <span>Grupo a encuestar </span>
+          <input
+            formControlName="grupoEncuestado"
+            type="text"
+            id="titulo"
+            name="titulo"
+            placeholder="Hombres y Mujeres"
+          />
+          <br />
+        </div>
+      </form>
 
-                type="text"
-                id="titulo"
-                name="titulo"
-                placeholder="ej. Sedric"
-              />
-              <br />
-            </div>
-            <div>
-              <span
-                >Grupo a encuestar
-              </span>
-              <input
-              formControlName="grupoEncuestado"
+      <div class="setEncuesta" id="preguntas">
+        <h1>Encuesta</h1>
+      </div>
 
-                type="text"
-                id="titulo"
-                name="titulo"
-                placeholder="Hombres y Mujeres"
-              />
-              <br />
-            </div>
-            
-          </form>
-    
-          <div class="setEncuesta" id="preguntas">
-            <h1>Encuesta</h1>
-          </div>
-    
-          <!-- <div class="textbox">
+      <!-- <div class="textbox">
                         <div formArrayName="operadora">
                             <div *ngFor="let item of getPhones.controls; let i=index " [formGroupName]="i">
                                 <input class="form-control" type="text" placeholder="Pregunta" formControlName="phone1">
@@ -71,119 +67,118 @@
                         </select>
                         
                     </div> -->
-    
-          <div>
-            <!-- <span *ngIf="registerForm.controls['phone'].errors?.required" id="errors"> Celular obligatorio </span> -->
-            <!-- <span *ngIf="registerForm.controls['phone'].errors?.pattern" id="errors"> Celular invalido </span> -->
-          </div>
-          <!-- <button (click)="submit()" type="button" class="btn">Enviar</button> -->
-          <button
-            (click)="saveForm()"
-            type="button"
-            class="bg-blue-500 px-6 py-3 border-2"
-          >
-            ENVIAR
-          </button>
+
+      <div>
+        <!-- <span *ngIf="registerForm.controls['phone'].errors?.required" id="errors"> Celular obligatorio </span> -->
+        <!-- <span *ngIf="registerForm.controls['phone'].errors?.pattern" id="errors"> Celular invalido </span> -->
+      </div>
+      <!-- <button (click)="submit()" type="button" class="btn">Enviar</button> -->
+      <button
+        (click)="saveForm()"
+        type="button"
+        class="bg-blue-500 px-6 py-3 border-2"
+      >
+        ENVIAR
+      </button>
+    </div>
+
+    <div class="container mx-auto px-4 sm:px-8">
+      <div class="py-8">
+        <div>
+          <h2 class="text-2xl font-semibold leading-tight">Usuarios</h2>
         </div>
-        
-        
-        <div class="container mx-auto px-4 sm:px-8">
-          <div class="py-8">
-    
-            <div>
-              <h2 class="text-2xl font-semibold leading-tight">Usuarios</h2>
-            </div>
-            <div class="my-2 flex sm:flex-row flex-col">
-              <div class="block relative">
-                <span
-                  class="h-full absolute inset-y-0 left-0 flex items-center pl-2"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    class="h-4 w-4 fill-current text-gray-500"
-                  >
-                    <path
-                      d="M10 4a6 6 0 100 12 6 6 0 000-12zm-8 6a8 8 0 1114.32 4.906l5.387 5.387a1 1 0 01-1.414 1.414l-5.387-5.387A8 8 0 012 10z"
-                    ></path>
-                  </svg>
-                </span>
-                <input
-                  placeholder="Search"
-                  class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
-                />
-              </div>
-            </div>
-            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-              <div
-                class="inline-block min-w-full shadow rounded-lg overflow-hidden"
+        <div class="my-2 flex sm:flex-row flex-col">
+          <div class="block relative">
+            <span
+              class="h-full absolute inset-y-0 left-0 flex items-center pl-2"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                class="h-4 w-4 fill-current text-gray-500"
               >
-                <table class="min-w-full leading-normal">
-                  <thead>
-                    <tr>
-                      <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                      >
-                        User
-                      </th>
-                      <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                      >
-                        Email
-                      </th>
-                      <th
-                      class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                    >
-                      Seleccionar Usuarios
-                    </th>
-                      
-                    </tr>
-                  </thead>
-                  <tbody id="form1">
-                    <tr *ngFor="let user of user">
-                      <td
-                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                      >
-                        <div class="flex items-center">
-                          <div class="flex-shrink-0 w-10 h-10">
-                            <img
-                              class="w-full h-full rounded-full"
-                              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                              alt=""
-                            />
-                          </div>
-                          <div class="ml-3">
-                            <p class="text-gray-900 whitespace-no-wrap">
-                              {{ user.nombre }}
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-                      <td
-                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                      >
-                        <p class="text-gray-900 whitespace-no-wrap">{{ user.email }}</p>
-                      </td>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <input type="checkbox" (change)="onChange(user._id, $event.target.checked)">
-                      </td>
-    
-                      
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-    
-              
-            </div>
+                <path
+                  d="M10 4a6 6 0 100 12 6 6 0 000-12zm-8 6a8 8 0 1114.32 4.906l5.387 5.387a1 1 0 01-1.414 1.414l-5.387-5.387A8 8 0 012 10z"
+                ></path>
+              </svg>
+            </span>
+            <input
+              placeholder="Search"
+              class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
+            />
+          </div>
+        </div>
+        <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+          <div
+            class="inline-block min-w-full shadow rounded-lg overflow-hidden"
+          >
+            <table class="min-w-full leading-normal">
+              <thead>
+                <tr>
+                  <th
+                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                  >
+                    User
+                  </th>
+                  <th
+                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                  >
+                    Email
+                  </th>
+                  <th
+                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                  >
+                    Seleccionar Usuarios
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="form1">
+                <tr *ngFor="let user of user">
+                  <td
+                    class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
+                  >
+                    <div class="flex items-center">
+                      <div class="flex-shrink-0 w-10 h-10">
+                        <img
+                          class="w-full h-full rounded-full"
+                          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+                          alt=""
+                        />
+                      </div>
+                      <div class="ml-3">
+                        <p class="text-gray-900 whitespace-no-wrap">
+                          {{ user.nombre }}
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
+                  >
+                    <p class="text-gray-900 whitespace-no-wrap">
+                      {{ user.email }}
+                    </p>
+                  </td>
+                  <td
+                    class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
+                  >
+                    <input
+                      type="checkbox"
+                      (change)="onChange(user._id, $event.target.checked)"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-    
-      <!-- <form [formGroup]="patternForm">
+    </div>
+  </div>
+
+  <!-- <form [formGroup]="patternForm">
               <input type="text" placeholder="correo" formControlName="example1"><br>
               <span *ngIf="patternForm.controls['example1'].errors?.pattern"> Invalido1 </span>
               <input type="text" placeholder="password" formControlName="example2"><br>
               <span *ngIf="patternForm.controls['example2'].errors?.pattern"> Invalido2 </span>
           </form> -->
-
 </app-menu-encuestador>
