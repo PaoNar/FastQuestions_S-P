@@ -67,20 +67,20 @@ export class CrudService {
     return returnData;
   }
 
-  // getByID(id: string): Array<any> {
-  //   let returnData: Array<any> = [];
-  //   this.http
-  //     .get<DataRx>(`${this.url}user/${id}`, this.server.getHeaders())
-  //     .subscribe((data) => {
-  //       if (data.ok) {
-  //         returnData = data.data;
-  //         this.permissions.decodeToken(data.token);
-  //       } else {
-  //         alert(data.msg);
-  //       }
-  //     });
-  //   return returnData;
-  // }
+  getByID(id: string): Array<any> {
+    let returnData: Array<any> = [];
+    this.http
+      .get<DataRx>(`${this.url}user/${id}`, this.server.obtenerHeaders())
+      .subscribe((data: any) => {
+        if (data.transaccion) {
+          returnData = data.data;
+          this.permissions.decodeToken(data.token);
+        } else {
+          alert(data.msg);
+        }
+      });
+    return returnData;
+  }
 
   putData(dataSend: object, endPoint: string, _id: string): Array<any> {
     let returnData: Array<any> = [];

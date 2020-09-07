@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { CrudService } from '../servicios/crud.service';
 import { WebServiceService } from '../servicios/web-service.service';
 import { HttpClient } from '@angular/common/http';
+import { count } from 'rxjs/operators';
 
 @Component({
   selector: 'app-nueva-encuesta',
@@ -27,7 +28,7 @@ export class NuevaEncuestaComponent implements OnInit {
   //DECLARACIONES - BEGIN
   registerForm: FormGroup;
   parametros: any;
-  numeroOpciones: Number;
+  numeroOpciones: any;
   user = [];
   //DECLARACIONES - FINISH
 
@@ -131,58 +132,60 @@ export class NuevaEncuestaComponent implements OnInit {
       }
     },
       pregunta: Array<any> = [],
-      temp: Array<any> = [],
-      opciones: Array<any> = []
-
-    for (let i = 1; i <= this.numeroOpciones; i++) {
-      let opcionValue = (<HTMLInputElement>document.getElementById(i.toString())).value;
-
-      temp.push(opcionValue)
-      // if (opciones.length + 1 <= parseInt(this.parametros[1])) {
-      // } 
-      // else if (opciones.length + 1 <=  this.numeroOpciones) {
-      //   opciones.push(opcionValue) 
-      // }
-    }
+      opciones: Array<any> = [],
+      counter = 1,
+      startValue = 0
 
     for (let i = 1; i <= parseInt(this.parametros[0]); i++) {
       let preguntasValue = (<HTMLInputElement>document.getElementById("pregunta" + i)).value;
+     
+      let j = 1
 
-      for (let j = 0; j <= temp.length - 1; j++) {
-        // console.log(temp[j])
+     while(j <= parseInt(this.parametros[1]))  {
+      let opcionValue = (<HTMLInputElement>document.getElementById(counter.toString())).value;
+      
+      opciones.push(opcionValue)
 
-        // opciones.push(temp[j])
-      }
+      counter++
+      j++
+     }
 
+     if(startValue == 0) {
+       pregunta.push({
+         pregunta: preguntasValue,
+         opciones: opciones.slice(startValue, parseInt(this.parametros[1]))
+       })
+     } else {
       pregunta.push({
         pregunta: preguntasValue,
-        opciones: opciones
+        opciones: opciones.slice(startValue, this.numeroOpciones)
       })
+     }
+      
+      startValue += parseInt(this.parametros[1])
     }
 
-    // let checkboxes = document.getElementsByClassName("users")
-
-
-    // console.log(pregunta)
-    // console.log(opciones)
+    //console.log(pregunta)
 
     formulario.data.contenido = pregunta
 
-    console.log(formulario)
+    //console.log(formulario)
 
-    // let encuestaGuardada = this.crudService.postData(formulario, 'nuevaEncuesta');
-    //   if (!encuestaGuardada) {
-    //     console.log(encuestaGuardada)
-    //     //this.router.navigate(['/login']);
-    // } else {
-    //   Swal.fire({
-    //     position: 'center',
-    //     icon: 'error',
-    //     title: 'no se enviaron los datos',
-    //     showConfirmButton: false,
-    //     timer: 2000,
-    //   });
-    // }
+    let encuestaGuardada = this.crudService.postData(formulario, 'nuevaEncuesta');
+      if (encuestaGuardada) {
+        console.log("encuestaGuardada")
+        this.enviarCorreos()
+        alert("correos enviados a los usuarios")
+        //this.router.navigate(['/login']);
+    } else {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'no se enviaron los datos',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
   }
 
   onChange(id: string, isChecked: boolean) {
@@ -210,5 +213,39 @@ export class NuevaEncuestaComponent implements OnInit {
           this.user.push(element);
         });
       });
+  }
+
+  enviarCorreos() {
+    let correos: Array<any> = [],
+     encuestados = this.registerForm.get("encuestados").value;
+
+    this.user.forEach(user_element => {
+      encuestados.forEach(element => {
+        if (user_element._id == element) {
+            correos.push(user_element.email)
+        }
+      });
+    });
+
+    let preparacionEnvio = {
+      datos: {
+        correos
+      }
+    }
+
+    //send server
+    let enviarCorreos = this.crudService.postData(preparacionEnvio, 'enviar_correo');
+    if (enviarCorreos) {
+      console.log("enviarCorreos")
+      //this.router.navigate(['/login']);
+  } else {
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'no se enviaron los datos',
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  }
   }
 }
