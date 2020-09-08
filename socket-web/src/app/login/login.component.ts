@@ -78,12 +78,20 @@ export class LoginComponent implements  OnInit{
         if (res.transaccion) {
           if (this.permisos.decodificarToken(res.token)) {
             // this.router.navigate(['/encuestador']);
-            console.log(this.permisos.ObtenerUsuarioLogin());
+            // console.log(this.permisos.ObtenerUsuarioLogin());
             let userData: any = this.permisos.ObtenerUsuarioLogin()
-            if(userData.rol === "administrador") {
-              this.router.navigate(['/tabla-persona']);
-            } else {
-              this.router.navigate(['/encuestador']);
+            switch(userData.rol) {
+              case "administrador":
+                this.router.navigate(['/tabla-persona']);
+                break;
+              case "encuestado":
+                this.router.navigate(['/encuestado']);
+                break;
+              case "encuestador":
+                this.router.navigate(['/encuestador']);
+                break;
+              default:
+                alert("No tiene un rol asignado")
             }
             Swal.fire({
               position: 'top-end',

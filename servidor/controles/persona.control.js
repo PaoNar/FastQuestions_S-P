@@ -177,6 +177,7 @@ let login = (req, res) => {
       //if (data[0].email === email) {       
         if(bcrypt.compareSync(password, data[0].passw)) {
           let tokenBody = {
+            id: data[0]._id,
             email: data[0].email,
             sessionID: data[0].sessionID,
             rol: data[0].rol
