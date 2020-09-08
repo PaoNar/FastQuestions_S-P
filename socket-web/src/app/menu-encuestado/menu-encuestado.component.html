@@ -1,0 +1,38 @@
+<mat-sidenav-container  class="sidenav-container">
+  <mat-sidenav
+    #drawer 
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false">
+    <img src="../../assets/img/yavirac.png" alt="">
+    <mat-toolbar class="mat">Menu</mat-toolbar>
+    <mat-nav-list> 
+      <!-- *ngIf="dataUser.Usuario.rol == 'Administrador'" -->
+      <a mat-list-item routerLink="/encuestado">Encuestas</a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="" style="border-bottom: 5px solid rgb(6, 87, 187)">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Bienvenido Encuestado</span>
+      <span class="spacer"></span>
+      <ng-content></ng-content>
+      <mat-nav-list>
+        <a routerLink="/login">Salir</a>
+      </mat-nav-list>
+    </mat-toolbar>
+    <ng-content></ng-content>
+
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

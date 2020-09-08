@@ -10,7 +10,6 @@ import { PermisosService } from '../servicios/permisos.service';
   styleUrls: ['./encuestado.component.scss']
 })
 export class EncuestadoComponent implements OnInit {
-
   encuestas=[];
   chart = [];
   doughnut =[];

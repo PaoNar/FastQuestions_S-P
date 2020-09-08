@@ -32,6 +32,7 @@ import { EncuestasAdminComponent } from './encuestas-admin/encuestas-admin.compo
 import { RegisterComponent } from './register/register.component';
 import { VistaClienteComponent } from './vista-cliente/vista-cliente.component';
 import { EncuestadoComponent } from './encuestado/encuestado.component';
+import { MenuEncuestadoComponent } from './menu-encuestado/menu-encuestado.component';
 //import { CrearDocComponent } from './crear-doc/crear-doc.component';
 
 //const config: SocketIoConfig = {url: 'http://localhost:3500', options: {} }; 
@@ -51,7 +52,8 @@ import { EncuestadoComponent } from './encuestado/encuestado.component';
     EncuestasAdminComponent,
     RegisterComponent,
     VistaClienteComponent,
-    EncuestadoComponent
+    EncuestadoComponent,
+    MenuEncuestadoComponent
   ],
   imports: [
     BrowserModule,

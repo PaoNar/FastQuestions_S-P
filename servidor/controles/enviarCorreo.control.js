@@ -24,7 +24,7 @@ const mail1 = (req, res) => {
     from: process.env.EMAIL_USER,
     to: datos.correos,
     subject: "Encuesta",
-    html: `<div><h1>CINE</h1><br><h2>Sala: ${datos.sala}</h2><br><h2>Película: ${datos.pelicula}</h2><br><h2>Horario: ${datos.horario}</h2><br><h2>Número de Boletos: ${datos.numero_boletos}</h2></div>`,
+    html: `<div><h1>Tu usuario por defecto es tu correo electronico </h1><br><h2>Tu contraseña por defecto es: 123</h2></div> <a href="http://localhost:4200/login"> ingresa a este link: http://localhost:4200/login</a>`,
   };
 
   transporter.verify((error, success) => {

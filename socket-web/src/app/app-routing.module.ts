@@ -18,7 +18,9 @@ const routes: Routes = [
   {path: 'encuestas-admin', loadChildren: () =>import('./encuestas-admin/encuestas-admin.module').then(m =>m.EncuestasAdminModule)},
   {path: 'registro', loadChildren: () =>import('./register/register.module').then(m =>m.RegisterModule)},
   {path: 'vista-cliente', loadChildren: () =>import('./vista-cliente/vista-cliente.module').then(m =>m.VistaClienteModule)},
-  {path: 'encuestado', loadChildren: () =>import('./encuestado/encuestado.module').then(m =>m.EncuestadoModule)}
+  {path: 'encuestado', loadChildren: () =>import('./encuestado/encuestado.module').then(m =>m.EncuestadoModule)},
+  {path: 'menu-encuestado', loadChildren: () =>import('./menu-encuestado/menu-encuestado.module').then(m =>m.MenuEncuestadoModule)},
+
 
 
 
