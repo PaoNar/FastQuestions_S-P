@@ -13,8 +13,14 @@
                         <label class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' for='grid-text-1'>{{ pregunta.pregunta }}</label>
 
                         <div class="w-full md:w-full px-3 py-3 mb-6">
-                            <div *ngFor="let opcion of preguntas[i].opciones" class="mt-3 pt-4">
-                                <button class="appearance-none bg-gray-200 text-gray-900 px-2 py-1 shadow-sm border border-gray-400 rounded-md">{{ opcion }}</button>
+                            <div class="mt-3 pt-4">
+                                <label for="opcion">Seleccione su respuesta:</label>
+                                <select id="opcionSeleccionada" (change)="onChange(pregunta.pregunta, $event.target.value)">
+                                    <option>Seleccione...</option>
+                                    <option *ngFor="let opcion of preguntas[i].opciones" value="{{opcion}}">{{ opcion }}</option>
+                                </select>
+                                <!-- <input type="checkbox" (change)="onChange(pregunta.pregunta, opcion, $event.target.checked)"> -->
+                                <!-- <label class="appearance-none bg-gray-200 text-gray-900 px-2 py-1 shadow-sm border border-gray-400 rounded-md">{{ opcion }}</label> -->
                             </div>
                         </div>
                     </div>
