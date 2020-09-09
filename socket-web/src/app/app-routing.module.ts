@@ -20,6 +20,8 @@ const routes: Routes = [
   {path: 'vista-cliente', loadChildren: () =>import('./vista-cliente/vista-cliente.module').then(m =>m.VistaClienteModule)},
   {path: 'encuestado', loadChildren: () =>import('./encuestado/encuestado.module').then(m =>m.EncuestadoModule)},
   {path: 'menu-encuestado', loadChildren: () =>import('./menu-encuestado/menu-encuestado.module').then(m =>m.MenuEncuestadoModule)},
+  {path: 'registro-encuestados', loadChildren: () =>import('./registro-encuestados/registro-encuestados.module').then(m =>m.RegistroEncuestadosModule)},
+
 
 
 

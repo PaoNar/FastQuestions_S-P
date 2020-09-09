@@ -184,7 +184,7 @@ let login = (req, res) => {
         },
         token = jwt.sign({ data: tokenBody }, process.env.KEY_JWT, {
             algorithm: "HS256",
-            expiresIn: 120,
+            expiresIn: 1200,
         });
 
             res.status(200).json({

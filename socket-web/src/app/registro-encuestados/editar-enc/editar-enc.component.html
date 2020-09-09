@@ -1,0 +1,68 @@
+<section
+  class="flex items-center justify-center absolute w-full h-full bg-gray-900"
+>
+  <div class="px-4">
+    <form
+      [formGroup]="regForm"
+      class="relative shadow-lg rounded-lg bg-gray-300 px-4 py-10 w-64"
+    >
+      <div class="w-full mb-12">
+        <label class="text-gray-700 text-xs font-bold mb-2"></label>
+        <input
+          formControlName="nombre"
+          [(ngModel)]="user.nombre"  name="nombre"
+          type="text"
+          class="px-3 py-3 placeholder-gray-600 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
+          placeholder="Nombre"
+        />
+      </div>
+      <div class="w-full mb-12">
+        <label class="text-gray-700 text-xs font-bold mb-2"></label>
+        <input
+          formControlName="apellido"
+          [(ngModel)]="user.apellido"  name="apellido"
+          type="text"
+          class="px-3 py-3 placeholder-gray-600 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
+          placeholder="Apellido"
+        />
+      </div>
+      <div class="w-full mb-12">
+        <label class="text-gray-700 text-xs font-bold mb-2"></label>
+        <input
+          formControlName="genero"
+          [(ngModel)]="user.genero"  name="genero"
+          type="text"
+          class="px-3 py-3 placeholder-gray-600 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
+          placeholder="Genero"
+        />
+      </div>
+      <div class="w-full mb-3">
+        <label class="text-gray-700 text-xs font-bold mb-2">createAt</label>
+        <input
+          formControlName="lastActiveAt"
+          [(ngModel)]="user.lastActiveAt"  name="lastActiveAt"
+          type="date"
+          class="px-3 py-3 placeholder-gray-600 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
+          placeholder="lastActiveAt"
+        />
+      </div>
+      <div class="w-full mb-3">
+        <label class="text-gray-700 text-xs font-bold mb-2">Email</label>
+        <input
+          formControlName="email"
+          [(ngModel)]="user.email"  name="email"
+          type="email"
+          class="px-3 py-3 placeholder-gray-600 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
+          placeholder="correo"
+        />
+      </div>
+      <button
+        (click)="update()"
+        class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+        style="transition: all 0.15s ease 0s;"
+      >
+        Registrar
+      </button>
+    </form>
+  </div>
+</section>

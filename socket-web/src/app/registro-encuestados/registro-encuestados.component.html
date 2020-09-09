@@ -1,0 +1,115 @@
+<app-menu-encuestador>
+   
+  <main
+  class="flex-1 bg-gray-200 dark:bg-gray-900 overflow-y-auto transition duration-500 ease-in-out"
+>
+  <div
+    class="px-8 py-12 text-gray-700 dark:text-gray-500 transition duration-500 ease-in-out"
+  >
+    <button class="bg-indigo-700 hover:bg-indigo-500 text-white ml-5 py-2 px-3 rounded-lg" routerLink="/registro-encuestados/crear-enc">Nuevo Encuestado</button>
+
+    <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+      <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+        <table class="min-w-full leading-normal items-centers">
+          <thead class="items-center">
+            <tr>
+              <th
+                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+              >
+                Nombre
+              </th>
+              <th
+                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+              >
+                Apellido
+              </th>
+              <th
+                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+              >
+                Genero
+              </th>
+              <th
+                class="px-10 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+              >
+                Fecha
+              </th>
+              <th
+                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+              >
+                Email
+              </th>
+              <th
+                class="px-2 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+              >
+                editar
+              </th>
+              <th
+                class="px-2 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+              >
+                Borrar
+              </th>
+            </tr>
+          </thead>
+          <tbody class="items-center">
+            <tr *ngFor="let user of user">
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <div class="flex items-center">
+                  <!-- <div class="flex-shrink-0 w-10 h-10">
+                    <img
+                      class="w-full h-full rounded-full"
+                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+                      alt=""
+                    />
+                  </div> -->
+                  <div class="ml-3">
+                    <p class="text-gray-900 whitespace-no-wrap">
+                      {{ user.nombre }}
+                    </p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-  900 whitespace-no-wrap">
+                  {{ user.apellido }}
+                </p>
+              </td>
+              <td class="px-2 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap">
+                  {{ user.genero }}
+                </p>
+              </td>
+              <td class="px-2 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap">
+                  {{ user.lastActiveAt | date}}
+                </p>
+              </td>
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap">
+                  {{ user.email }}
+                </p>
+              </td>
+              <td class="px-2 py-5 border-b border-gray-200 bg-white text-sm">
+                <button
+                  (click)="edit(user)"
+                  class="material-icons text-gray-900 whitespace-no-wrap"
+                >
+                  edit
+                </button>
+              </td>
+              <td class="px-2 py-5 border-b border-gray-200 bg-white text-sm">
+                <button
+                  (click)="delet(user._id)"
+                  class="material-icons text-gray-900 whitespace-no-wrap"
+                >
+                  person_remove
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+</app-menu-encuestador>
+
