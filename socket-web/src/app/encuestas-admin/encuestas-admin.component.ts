@@ -1,34 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { WebServiceService } from '../servicios/web-service.service';
 import { HttpClient } from '@angular/common/http';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-encuestas-admin',
   templateUrl: './encuestas-admin.component.html',
-  styleUrls: ['./encuestas-admin.component.scss']
+  styleUrls: ['./encuestas-admin.component.scss'],
 })
 export class EncuestasAdminComponent implements OnInit {
-  encuestas=[];
+  encuestas = [];
   chart = [];
-  doughnut =[];
+  doughnut = [];
 
-  private url:string;
-  constructor( private servidor: WebServiceService,
-      private router:Router,
-      private http:HttpClient) { 
-      this.url=servidor.obtenerUrl();
-    }
-  
-  ngOnInit() {
-    this.getEncuestas();
-   
+  private url: string;
+  constructor(
+    private servidor: WebServiceService,
+    private router: Router,
+    private http: HttpClient
+  ) {
+    this.url = servidor.obtenerUrl();
   }
 
-  // applyFilter(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-  // }
+  ngOnInit() {
+    this.getEncuestas();
+  }
 
   getEncuestas(): void {
     this.http
@@ -40,9 +36,8 @@ export class EncuestasAdminComponent implements OnInit {
       });
   }
 
-  detallesEncuesta(id):void{
-    localStorage.setItem("encuestaID", id),
-    this.router.navigate(['/encuestas/detalle']);
+  detallesEncuesta(id): void {
+    localStorage.setItem('encuestaID', id),
+      this.router.navigate(['/encuestas/detalle']);
   }
-
 }

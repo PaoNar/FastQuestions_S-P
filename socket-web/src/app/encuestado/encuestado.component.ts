@@ -24,13 +24,7 @@ export class EncuestadoComponent implements OnInit {
   
   ngOnInit() {
     this.getEncuestas();
-   
   }
-
-  // applyFilter(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-  // }
 
   getEncuestas(): void {
     // console.log(this.permisos.ObtenerUsuarioLogin());

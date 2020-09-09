@@ -11,6 +11,7 @@ import { CrudService } from '../servicios/crud.service';
 import { WebServiceService } from '../servicios/web-service.service';
 import { HttpClient } from '@angular/common/http';
 import { PermisosService } from '../servicios/permisos.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class VistaClienteComponent implements OnInit {
   preguntas: Array<any> = [];
   counter: number = 1;
   code: Array<number> = [];
+  private router: Router
 
   constructor(
     private fb: FormBuilder,
@@ -111,7 +113,7 @@ export class VistaClienteComponent implements OnInit {
       });
     }
 
-    console.log(this.respuestasEncuestaForm.value);
+    // console.log(this.respuestasEncuestaForm.value);
   }
 
   guardarRespuestas() {
@@ -123,14 +125,21 @@ export class VistaClienteComponent implements OnInit {
       }
   }
 
-    let respuestas: any = this.crudService.putData(datos, 'update_encuestas', localStorage.getItem('encuestaID'));
-    if ((respuestas != [])) {
-      // this.router.navigate(['/login']);
+    let respuestas = this.crudService.putData(datos, 'update_encuestas', localStorage.getItem('encuestaID'));
+    if ( respuestas != []) {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Se ha enviado correctamente',
+        showConfirmButton: true,
+        timer: 2000,
+      });
+      
     } else {
       Swal.fire({
         position: 'center',
         icon: 'error',
-        title: 'no se enviaron los datos',
+        title: 'No se enviaron los datos',
         showConfirmButton: false,
         timer: 2000,
       });

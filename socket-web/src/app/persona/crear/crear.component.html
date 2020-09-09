@@ -6,31 +6,36 @@
       [formGroup]="personaForm"
       class="relative shadow-lg rounded-lg bg-gray-300 px-4 py-10 w-64"
     >
-      <div class="w-full mb-12">
-        <label class="text-gray-700 text-xs font-bold mb-2"></label>
+      <div class="w-full mb-3">
+        <label class="text-gray-700 text-xs font-bold mb-2">Nombre</label>
         <input
           formControlName="nombre"
           type="text"
           class="px-3 py-3 placeholder-gray-600 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
-          placeholder="Paola"
+          placeholder="Nombre"
+          required
         />
-      </div>
-      <div class="w-full mb-12">
-        <label class="text-gray-700 text-xs font-bold mb-2"></label>
+       </div>
+        
+      <div class="w-full mb-3">
+        <label class="text-gray-700 text-xs font-bold mb-2">Apellido</label>
         <input
           formControlName="apellido"
           type="text"
           class="px-3 py-3 placeholder-gray-600 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
-          placeholder="Narvaéz"
+          placeholder="Apellido"
+          required
         />
+
       </div>
       <div class="w-full mb-3">
         <label class="text-gray-700 text-xs font-bold mb-2">genero</label>
         <input
           formControlName="genero"
-          type="genero"
+          type="text"
           class="px-3 py-3 placeholder-gray-600 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
           placeholder="genero"
+          required
         />
       </div>
       <div class="w-full mb-3">
@@ -40,6 +45,7 @@
           type="email"
           class="px-3 py-3 placeholder-gray-600 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
           placeholder="Email"
+          required
         />
       </div>
       <div class="w-full mb-3">
@@ -48,25 +54,27 @@
           formControlName="lastActiveAt"
           type="date"
           class="px-3 py-3 placeholder-gray-600 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
-          placeholder="lastActiveAt"
+          required
         />
       </div>
-      <div class="w-full mb-12">
+      <div class="w-full mb-3">
         <label class="text-gray-700 text-xs font-bold mb-2">Password</label>
         <input
           formControlName="passw"
           type="password"
           class="px-3 py-3 placeholder-gray-600 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
           placeholder="Password"
+          required
         />
       </div>
-      <div class="w-full mb-12">
+      <div class="w-full mb-3">
         <label class="text-gray-700 text-xs font-bold mb-2">Password</label>
         <input
           formControlName="verifypassw"
           type="password"
           class="px-3 py-3 placeholder-gray-600 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
           placeholder="Confirme su password"
+          required
         />
       </div>
       <button

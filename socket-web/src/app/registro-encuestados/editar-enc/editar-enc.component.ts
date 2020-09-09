@@ -24,19 +24,19 @@ export class EditarEncComponent implements OnInit {
 
   ngOnInit(): void {
     this.regForm = this.formBuilder.group({
-      nombre: ['', [Validators.required]],
-       apellido: ['', [Validators.required]],
-       genero: ['', [Validators.required]],
+      nombre: ['', [Validators.required, Validators.pattern('^[A-Z]+[a-z]*$')]],
+       apellido: ['', [Validators.required, Validators.pattern('^[A-Z]+[a-z]*$')]],
+       email: ['', [Validators.required, Validators.pattern('^[a-z]+[a-zA-Z0-9._-ñ]*@[a-z]+[a-z0-9]*.[a-z]{2,3}[.]?[a-z]{2,3}$')]],
+       genero: ['', [Validators.required, Validators.pattern('^[A-Z]+[a-z]*$')]],
        lastActiveAt: ['', [Validators.required]],
-       email: ['', [Validators.required]],
    });
   }
   update(){
     let nombre = this.regForm.get('nombre').value;
     let apellido = this.regForm.get('apellido').value;
+    let email = this.regForm.get('email').value;
     let genero = this.regForm.get('genero').value;
     let lastActiveAt = this.regForm.get('lastActiveAt').value;
-    let email = this.regForm.get('email').value;
     if (this.regForm.invalid) {
       console.log('Formulario no valido')
       } else {
@@ -44,9 +44,9 @@ export class EditarEncComponent implements OnInit {
           data: {
             nombre,
             apellido,
+            email,
             genero,
             lastActiveAt,
-            email,
           },
         };
         let userData= this.CrudService.putData(
@@ -56,7 +56,7 @@ export class EditarEncComponent implements OnInit {
        if (userData) {
          console.log(this.user._id)
          console.log(Data)
-         this.router.navigate(['/tabla-persona']);
+         this.router.navigate(['/registro-encuestados']);
          localStorage.clear();
          
        }

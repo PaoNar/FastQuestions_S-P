@@ -30,7 +30,7 @@
                       )
                     "
                   >
-                    <option>Seleccione...</option>
+                    <option></option>
                     <option
                       *ngFor="let opcion of preguntas[i].opciones; let i = index"
                       id="{{ i + 1 }}"
@@ -39,10 +39,7 @@
                       {{ opcion }}
                     </option>
                   </select>
-                  
-                  <!-- <input type="checkbox" (change)="onChange(pregunta.pregunta, opcion, $event.target.checked)"> -->
-                  <!-- <label class="appearance-none bg-gray-200 text-gray-900 px-2 py-1 shadow-sm border border-gray-400 rounded-md">{{ opcion }}</label> -->
-                </div>
+                  </div>
               </div>
             </div>
             <!-- end -->

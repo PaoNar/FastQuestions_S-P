@@ -18,13 +18,14 @@ export class CrearComponent implements OnInit {
 
   ngOnInit(): void {
     this.personaForm = this.formBuilder.group({
-      nombre: ['', [Validators.required]],
-      apellido: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      genero: ['', [Validators.required]],
+      nombre: ['', [Validators.required, Validators.pattern('^[A-Z]+[a-z]*$')]],
+      apellido: ['', [Validators.required, Validators.pattern('^[A-Z]+[a-z]*$')]],
+      email: ['', [Validators.required, Validators.pattern('^[a-z]+[a-zA-Z0-9._-ñ]*@[a-z]+[a-z0-9]*.[a-z]{2,3}[.]?[a-z]{2,3}$')]],
+      genero: ['', [Validators.required, Validators.pattern('^[A-Z]+[a-z]*$')]],
       lastActiveAt: ['', [Validators.required]],
       passw: ['', [Validators.required]],
       verifypassw: ['', [Validators.required]],
+
     });
   }
 
@@ -65,7 +66,7 @@ export class CrearComponent implements OnInit {
         Swal.fire({
           position: 'center',
           icon: 'error',
-          title: 'Todos los campos son requeridos',
+          title: 'Datos Invalidos',
           showConfirmButton: false,
           timer: 2000,
         });

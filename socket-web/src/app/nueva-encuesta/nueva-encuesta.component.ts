@@ -62,7 +62,7 @@ export class NuevaEncuestaComponent implements OnInit {
         if (result.value) {
           this.parametros = await result.value;
           Swal.fire({
-            title: 'Su encuesta se esta creando!',
+            title: 'Su encuesta se ha creando!',
           }).then(() => {
             this.dibujarEncuesta();
           });
@@ -173,10 +173,17 @@ export class NuevaEncuestaComponent implements OnInit {
 
     let encuestaGuardada = this.crudService.postData(formulario, 'nuevaEncuesta');
       if (encuestaGuardada) {
-        console.log("encuestaGuardada")
+        // console.log("encuestaGuardada")
         this.enviarCorreos()
-        alert("correos enviados a los usuarios")
-        //this.router.navigate(['/login']);
+        // alert("correos enviados a los usuarios")
+        // this.router.navigate(['/login']);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Enviado',
+          showConfirmButton: false,
+          timer: 2000,
+        });
     } else {
       Swal.fire({
         position: 'center',
@@ -201,10 +208,6 @@ export class NuevaEncuestaComponent implements OnInit {
     }
   }
 
-// applyFilter(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-  // }
   getPersonas(): void {
     this.http
       .get(`${this.url}get_persona`, this.servidor.obtenerHeaders())

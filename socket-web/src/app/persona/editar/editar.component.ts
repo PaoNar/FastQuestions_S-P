@@ -24,19 +24,20 @@ export class EditarComponent implements OnInit {
 
   ngOnInit(): void {
     this.personaForm = this.formBuilder.group({
-      nombre: ['', [Validators.required]],
-       apellido: ['', [Validators.required]],
-       genero: ['', [Validators.required]],
-       lastActiveAt: ['', [Validators.required]],
-       email: ['', [Validators.required]],
+      nombre: ['', [Validators.required, Validators.pattern('^[A-Z]+[a-z]*$')]],
+      apellido: ['', [Validators.required, Validators.pattern('^[A-Z]+[a-z]*$')]],
+      email: ['', [Validators.required, Validators.pattern('^[a-z]+[a-zA-Z0-9._-ñ]*@[a-z]+[a-z0-9]*.[a-z]{2,3}[.]?[a-z]{2,3}$')]],
+      genero: ['', [Validators.required, Validators.pattern('^[A-Z]+[a-z]*$')]],
+      lastActiveAt: ['', [Validators.required]],
+    
    });
   }
   update(){
     let nombre = this.personaForm.get('nombre').value;
     let apellido = this.personaForm.get('apellido').value;
+    let email = this.personaForm.get('email').value;
     let genero = this.personaForm.get('genero').value;
     let lastActiveAt = this.personaForm.get('lastActiveAt').value;
-    let email = this.personaForm.get('email').value;
     if (this.personaForm.invalid) {
       console.log('Formulario no valido')
       } else {
@@ -44,9 +45,9 @@ export class EditarComponent implements OnInit {
           data: {
             nombre,
             apellido,
-            genero,
-            lastActiveAt,
             email,
+            genero,
+            lastActiveAt
           },
         };
         let userData= this.CrudService.putData(
