@@ -34,7 +34,7 @@ export class EncuestadoComponent implements OnInit {
 
   getEncuestas(): void {
     // console.log(this.permisos.ObtenerUsuarioLogin());
-    let userData = this.permisos.ObtenerUsuarioLogin(),
+    let userData:any = this.permisos.ObtenerUsuarioLogin(),
       id = userData.id;
 
     this.http
