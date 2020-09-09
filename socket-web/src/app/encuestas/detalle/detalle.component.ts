@@ -29,20 +29,20 @@ export class DetalleComponent implements OnInit {
     this.chart = new Chart('canvas', {
       type: 'line',
       data: {
-        labels: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'],
+        labels: ['Si', 'No'],
         datasets: [
           {
             type: 'bar',
-            label: 'My First dataset',
-            data: [243, 156, 365, 30, 156, 265, 356, 543],
+            label: 'Mujeres',
+            data: [243, 156],
             backgroundColor: 'rgba(255,0,255,0.4)',
             borderColor: 'rgba(255,0,255,0.4)',
             fill: false,
           },
           {
             type: 'bar',
-            label: 'My Second dataset',
-            data: [243, 156, 365, 30, 156, 265, 356, 543].reverse(),
+            label: 'Hombres',
+            data: [243, 156].reverse(),
             backgroundColor: 'rgba(0,0,255,0.4)',
             borderColor: 'rgba(0,0,255,0.4)',
             fill: false,

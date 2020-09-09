@@ -10,6 +10,8 @@ import {
 import { CrudService } from '../servicios/crud.service';
 import { WebServiceService } from '../servicios/web-service.service';
 import { HttpClient } from '@angular/common/http';
+import { PermisosService } from '../servicios/permisos.service';
+
 
 @Component({
   selector: 'app-vista-cliente',
@@ -17,90 +19,121 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./vista-cliente.component.scss']
 })
 export class VistaClienteComponent implements OnInit {
-  private url:string;
-  preguntas: Array<any> = [];
   respuestasEncuestaForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private crudService: CrudService, private servidor: WebServiceService, private http: HttpClient) {
-    this.url=servidor.obtenerUrl();
+  private url: string;
+  userData: any;
+  preguntas: Array<any> = [];
+  counter: number = 1;
+  code: Array<number> = [];
 
-   }
+  constructor(
+    private fb: FormBuilder,
+    private servidor: WebServiceService,
+    private http: HttpClient,
+    private crudService: CrudService,
+    private permisos: PermisosService,
+
+
+  ) {
+    this.url = servidor.obtenerUrl();
+    this.userData = this.permisos.ObtenerUsuarioLogin()
+  }
 
   ngOnInit(): void {
     this.getDatosEncuesta();
 
     this.respuestasEncuestaForm = this.fb.group({
+      usuario: [this.userData.id],
       respuestas: this.fb.array([]),
     });
   }
 
   getDatosEncuesta(): void {
-    let id = localStorage.getItem("encuestaID");
+    let id = localStorage.getItem('encuestaID');
 
     this.http
-      .get(`${this.url}get_idencuestas?id=${id}`, this.servidor.obtenerHeaders())
+      .get(
+        `${this.url}get_idencuestas?id=${id}`,
+        this.servidor.obtenerHeaders()
+      )
       .subscribe((data: any) => {
-        this.preguntas = data.data[0].contenido
-        console.log(this.preguntas)
+        this.preguntas = data.data[0].contenido;
+        // console.log(this.preguntas);
       });
   }
 
-  onChange(pregunta: string, opcionSeleccionada: any) {
-    const respuestasEncuestaFormArray = <FormArray>this.respuestasEncuestaForm.controls.respuestas;
-    
-    let respuestas = this.respuestasEncuestaForm.get("respuestas").value,
-      tempOpcion,
-      tempPregunta
+  onChange(pregunta: any, opcionSeleccionada: any) {
+    const respuestasEncuestaFormArray = <FormArray>(
+      this.respuestasEncuestaForm.controls.respuestas
+    );
 
-    if (respuestas.length == 0) {
-      respuestasEncuestaFormArray.push(new FormControl(
-        {
-          user: localStorage.getItem("encuestaID"),
-          pregunta,
-          opcion: opcionSeleccionada
+    let respuestas = this.respuestasEncuestaForm.get('respuestas').value,
+      counter: number = 1;
+
+    if (respuestas.length == 0 && this.code.length == 0) {
+      respuestas.unshift({
+        pregunta,
+        opcion: opcionSeleccionada,
+        code: counter,
+      });
+      this.code.push(counter);
+    } else if (this.code.length <= this.preguntas.length - 1) {
+      for (let element of respuestas) {
+        for (let item of this.code) {
+          if (element.pregunta == pregunta && item == element.code) {
+            element.opcion = opcionSeleccionada;
+            break;
+          } else if (element.pregunta != pregunta) {
+            this.code.forEach((item) => {
+              if (item == counter) {
+                counter += 1;
+              }
+            });
+            respuestas.unshift({
+              pregunta,
+              opcion: opcionSeleccionada,
+              code: counter,
+            });
+            this.code.push(counter);
+            break;
+          }
         }
-      ));
-      tempPregunta = pregunta;
-      tempOpcion = opcionSeleccionada;
-      console.log(this.respuestasEncuestaForm.get("respuestas").value);
+        break;
+      }
+    } else {
+      respuestas.forEach((element) => {
+        this.code.forEach((item) => {
+          if (element.pregunta == pregunta && item == element.code) {
+            element.opcion = opcionSeleccionada;
+          }
+        });
+      });
     }
 
-    respuestas.forEach(element => {
-      if (element.pregunta == pregunta) {
-        respuestasEncuestaFormArray.patchValue([
-          {
-            user: localStorage.getItem("encuestaID"),
-            pregunta: element.pregunta,
-            opcion: opcionSeleccionada
-          }
-        ])
-        console.log(this.respuestasEncuestaForm.get("respuestas").value);
-        console.log("patch");
-      } 
-      // if (element.pregunta != tempPregunta) {
-      //   respuestasEncuestaFormArray.push(new FormControl(
-      //     {
-      //       user: localStorage.getItem("encuestaID"),
-      //       pregunta,
-      //       opcion: opcionSeleccionada
-      //     }
-      //   ));
-      //   counter = 1;
-      //   console.log(counter)
-      //   console.log(this.respuestasEncuestaForm.get("respuestas").value)
-      // }
-    });
+    console.log(this.respuestasEncuestaForm.value);
+  }
 
-    if (tempPregunta != pregunta) {
-      respuestasEncuestaFormArray.push(new FormControl(
-        {
-          user: localStorage.getItem("encuestaID"),
-          pregunta,
-          opcion: opcionSeleccionada
-        }
-      ))
-      tempPregunta = pregunta;
-      console.log(this.respuestasEncuestaForm.get("respuestas").value);
+  guardarRespuestas() {
+    let datos = {
+      "data":{
+          "respuestas":[
+            this.respuestasEncuestaForm.value
+          ]
+      }
+  }
+
+    let respuestas: any = this.crudService.putData(datos, 'update_encuestas', localStorage.getItem('encuestaID'));
+    if ((respuestas != [])) {
+      // this.router.navigate(['/login']);
+    } else {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'no se enviaron los datos',
+        showConfirmButton: false,
+        timer: 2000,
+      });
     }
   }
 }

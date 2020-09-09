@@ -30,7 +30,7 @@ const fs = require("fs"),
 
 
 //Actualizar un usuario 
-let updateOneUsuario = (req, res) =>{
+let updateEncuesta = (req, res) =>{
   id = req.query.id
   data = req.body.data
   encuestas.updateOne( {'_id': id} , {$set: data})
@@ -194,7 +194,7 @@ module.exports = {
   getEncuestas,
   //oneUsuario,
   //allencuestas,
-  updateOneUsuario,
+  updateEncuesta,
   getIdEncuesta,
   borrarOneUsuario,
   borrarAllUsuario,

@@ -9,6 +9,7 @@ const encuestasModel = Schema({
   contenido: { type: Array },
   grupoEncuestado: { type: String },
   encuestados:{type:Array},
+  respuestas:{type:Array},
 });
 
 module.exports = mongoose.model("encuestas", encuestasModel);

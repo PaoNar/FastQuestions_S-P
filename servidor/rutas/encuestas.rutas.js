@@ -18,7 +18,7 @@ api.get('/get_idencuestas', autenticaControl.autentica, encuestasControl.getIdEn
 api.post("/nuevaEncuesta", autenticaControl.autentica, encuestasControl.nuevaEncuesta);
 //api.post("/one_encuestas", autenticaControl.autentica, encuestasControl.oneUsuario);
 
-// api.put("/update_encuestas", autenticaControl.autentica, encuestasControl.updateOneUsuario);
+api.put("/update_encuestas", autenticaControl.autentica, encuestasControl.updateEncuesta);
 
 // api.delete("/delete_encuestas", encuestasControl.borrarAllUsuario);
 
