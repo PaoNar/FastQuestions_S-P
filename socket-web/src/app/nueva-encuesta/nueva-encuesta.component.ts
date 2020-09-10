@@ -240,7 +240,13 @@ export class NuevaEncuestaComponent implements OnInit {
     let enviarCorreos = this.crudService.postData(preparacionEnvio, 'enviar_correo');
     if (enviarCorreos) {
       console.log("enviarCorreos")
-      //this.router.navigate(['/login']);
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Los correos han sido enviados',
+        showConfirmButton: false,
+        timer: 2000,
+      });
   } else {
     Swal.fire({
       position: 'center',

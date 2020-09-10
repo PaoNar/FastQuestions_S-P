@@ -3,12 +3,12 @@
 
 const express = require("express"),
   //multiParty = require("connect-multiparty");
-  passwordControl = require("../middleware/password.control");
-  autenticaControl = require("../middleware/autentica.control")
+  passwordControl = require("../middleware/password.control"),
+  autenticaControl = require("../middleware/autentica.control");
   
 
 let api = express.Router(),
-  personaControl = require("../controles/persona.control")
+  personaControl = require("../controles/persona.control");
 
 //users ENDPOINT
 api.get("/", (req, res) => {
@@ -25,7 +25,7 @@ api.put("/update_persona", autenticaControl.autentica, personaControl.updateOneU
 api.delete("/delete_persona",autenticaControl.autentica , personaControl.borrarAllUsuario);
 api.delete("/delete_idpersona", autenticaControl.autentica, personaControl.borrarOneUsuario);
 
-api.post('/nuevo_persona', [passwordControl.codificarPassword], personaControl.nuevoUsuario);
+api.post('/nuevo_persona', passwordControl.codificarPassword, personaControl.nuevoUsuario);
 api.post('/login',  personaControl.login) 
 
 

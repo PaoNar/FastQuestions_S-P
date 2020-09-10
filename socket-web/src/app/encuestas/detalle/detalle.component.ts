@@ -9,8 +9,10 @@ import { Chart} from 'chart.js'
   styleUrls: ['./detalle.component.scss'],
 })
 export class DetalleComponent implements OnInit {
-  _id: string;
-  encuesta = [];
+  _idEncuesta: string;
+  respuestasUsuarios: Array<any>;
+  preguntasEncuesta: Array<any> = [];
+  opcionesPregunta: Array<any> = []
 
   datosPersonas = [];
   chart = [];
@@ -19,37 +21,38 @@ export class DetalleComponent implements OnInit {
   private url: string;
 
   constructor(private servidor: WebServiceService, private http: HttpClient) {
-    this._id = localStorage.getItem('encuestaID');
+    this._idEncuesta = localStorage.getItem('encuestaID');
     this.url = servidor.obtenerUrl();
   }
 
   ngOnInit(): void {
     this.getEncuesta();
+    // console.log(this.respuestasUsuarios);  
 
-    this.chart = new Chart('canvas', {
-      type: 'line',
-      data: {
-        labels: ['Si', 'No'],
-        datasets: [
-          {
-            type: 'bar',
-            label: 'Mujeres',
-            data: [243, 156],
-            backgroundColor: 'rgba(255,0,255,0.4)',
-            borderColor: 'rgba(255,0,255,0.4)',
-            fill: false,
-          },
-          {
-            type: 'bar',
-            label: 'Hombres',
-            data: [243, 156].reverse(),
-            backgroundColor: 'rgba(0,0,255,0.4)',
-            borderColor: 'rgba(0,0,255,0.4)',
-            fill: false,
-          },
-        ],
-      },
-    });
+    // this.chart = new Chart('canvas', {
+    //   type: 'line',
+    //   data: {
+    //     labels: ["si", "no"],
+    //     datasets: [
+    //       {
+    //         type: 'bar',
+    //         label:"Hombres",
+    //         data: this.preguntasEncuesta,
+    //         backgroundColor: 'rgba(255,0,255,0.4)',
+    //         borderColor: 'rgba(255,0,255,0.4)',
+    //         fill: false,
+    //       },
+    //       {
+    //         type: 'bar',
+    //         label: "Mujeres",
+    //         data: [789, 987].reverse(),
+    //         backgroundColor: 'rgba(0,0,255,0.4)',
+    //         borderColor: 'rgba(0,0,255,0.4)',
+    //         fill: false,
+    //       },
+    //     ],
+    //   },
+    // });
 
     this.doughnut = new Chart('doughnut', {
       type: 'doughnut',
@@ -70,12 +73,12 @@ export class DetalleComponent implements OnInit {
       data: {
         datasets: [
           {
-            data: [45, 10, 5, 25, 15],
-            backgroundColor: ['red', 'orange', 'yellow', 'green', 'blue'],
+            data: [60, 40],
+            backgroundColor: ['red', 'orange'],
             label: 'Dataset 1',
           },
         ],
-        labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
+        labels: ["Si", "No"],
       },
     });
   }
@@ -83,17 +86,15 @@ export class DetalleComponent implements OnInit {
   getEncuesta() {
     this.http
       .get(
-        `${this.url}get_idencuestas?id=${this._id}`,
+        `${this.url}get_idencuestas?id=${this._idEncuesta}`,
         this.servidor.obtenerHeaders()
       )
       .subscribe((data: any) => {
-        let encuestados;
+        this.respuestasUsuarios = data.data[0].respuestas
+      
+        this.getDataCharts()
 
-        this.encuesta.push(data.data[0]);
-        encuestados = data.data[0].encuestados;
-        console.log(encuestados);
-
-        encuestados.forEach((id) => {
+        data.data[0].encuestados.forEach((id) => {
           this.http
             .get(
               `${this.url}get_idpersona?id=${id}`,
@@ -103,8 +104,33 @@ export class DetalleComponent implements OnInit {
               this.datosPersonas.push(data.data[0]);
             });
         });
-      });
+      });  
+  }
 
-    console.log(this.datosPersonas);
+  getDataCharts() {
+    console.log(this.respuestasUsuarios[0].respuestas);
+    let counter: number = 0,
+      tempOpcion
+
+    this.respuestasUsuarios[0].respuestas.forEach(element => {
+      this.preguntasEncuesta.push(element.pregunta)
+      
+      if (element.opcion == "no") {
+        //console.log(element.opcion)
+        tempOpcion = element.opcion
+        counter += 1
+      } 
+    });
+
+    
+    let temp = {
+      opcion: tempOpcion,
+      counter: counter += 1
+    }
+
+    this.opcionesPregunta.push(temp)
+    console.log(this.opcionesPregunta);
+
+    //console.log(this.preguntasEncuesta)
   }
 }

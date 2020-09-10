@@ -17,7 +17,7 @@ const personaModel = Schema({
   lastActiveAt: { type: Date},
   sessionID: { type: String },
   rol: {
-    default: 'Encuestador',
+    default: 'encuestador',
     type: String
   },
 });
